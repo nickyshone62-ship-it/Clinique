@@ -77,7 +77,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-md border border-slate-700">
               <CheckCircle2 className="w-4 h-4 text-teal-400" />
-              <span>Prêt pour l'étape 2 (Neon DB)</span>
+              <span>Prêt pour l&apos;étape 2 (Neon DB)</span>
             </div>
           </div>
         </CardContent>
