@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 import { prisma } from './prisma';
@@ -67,13 +68,13 @@ export async function getSessionUser(): Promise<UserSession | null> {
 
 /**
  * Fonction de garde serveur pour sécuriser les actions et composants serveurs.
- * Vérifie également la présence effective de l'utilisateur dans la base Neon.
+ * Redirige automatiquement vers /login si l'utilisateur n'est pas authentifié.
  */
 export async function requireUser(): Promise<UserSession> {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser) {
-    throw new Error('UNAUTHORIZED');
+    redirect('/login');
   }
 
   // Double vérification serveur contre la base de données
@@ -83,7 +84,7 @@ export async function requireUser(): Promise<UserSession> {
   });
 
   if (!userInDb) {
-    throw new Error('UNAUTHORIZED');
+    redirect('/login');
   }
 
   return {
