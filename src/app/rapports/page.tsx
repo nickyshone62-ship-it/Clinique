@@ -84,17 +84,19 @@ export default function RapportsPage() {
 
   return (
     <div className="min-h-screen bg-[#f5f6f2] text-slate-900 font-sans selection:bg-lime-400 selection:text-slate-950 p-4 sm:p-8 print:p-0 print:bg-white print:text-black">
-      {/* Styles d'impression optimisés 1 seule page A4 */}
+      {/* Styles d'impression optimisés PLEINE PAGE A4 avec écritures bien visibes */}
       <style jsx global>{`
         @media print {
           @page {
             size: portrait;
             margin: 8mm 10mm;
           }
-          body {
+          html, body {
+            width: 100% !important;
+            height: 100% !important;
             background-color: white !important;
             color: black !important;
-            font-size: 10px !important;
+            font-size: 12px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
@@ -111,6 +113,7 @@ export default function RapportsPage() {
             color: black !important;
           }
           table {
+            width: 100% !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
           }
@@ -122,7 +125,7 @@ export default function RapportsPage() {
       `}</style>
 
       {/* Barre d'outils et de contrôle (Masquée à l'impression) */}
-      <div className="max-w-4xl mx-auto space-y-6 no-print">
+      <div className="max-w-5xl mx-auto space-y-6 no-print">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white border border-slate-200/80 p-4 sm:p-6 rounded-[32px] shadow-sm">
           <Link
             href="/recettes"
@@ -138,7 +141,7 @@ export default function RapportsPage() {
               className="bg-slate-950 hover:bg-slate-800 text-white font-bold py-2.5 px-5 rounded-full text-xs transition-all flex items-center gap-2 shadow-md cursor-pointer"
             >
               <Printer className="w-4 h-4 text-lime-400" />
-              <span>Imprimer le Rapport (PDF 1 Page)</span>
+              <span>Imprimer le Rapport (Pleine Page A4)</span>
             </button>
           </div>
         </div>
@@ -207,73 +210,73 @@ export default function RapportsPage() {
         </div>
       </div>
 
-      {/* RAPPORT OFFICIEL (Visible à l'écran et optimisé pour l'impression 1 PAGE A4) */}
-      <div className="max-w-4xl mx-auto bg-white text-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl mt-6 print:mt-0 print:p-0 print:shadow-none print:rounded-none space-y-5 print:space-y-3.5 border border-slate-200 print:border-none">
+      {/* RAPPORT OFFICIEL (Visible à l'écran et optimisé pour l'impression PLEINE PAGE A4) */}
+      <div className="w-full max-w-5xl mx-auto bg-white text-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl mt-6 print:mt-0 print:p-0 print:shadow-none print:rounded-none space-y-6 print:space-y-5 border border-slate-200 print:border-none print:w-full print:max-w-none">
         {/* En-tête officiel de la clinique */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-900 pb-4 print:pb-3 gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-900 pb-5 print:pb-4 gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-3">
-              <img src="/logo.jpg" alt="Logo BK Clinique" className="w-16 h-16 sm:w-20 sm:h-20 print:w-14 print:h-14 rounded-2xl object-contain bg-white p-1 border border-slate-300 print:border-black shadow-xs" />
+            <div className="flex items-center gap-4">
+              <img src="/logo.jpg" alt="Logo BK Clinique" className="w-20 h-20 sm:w-24 sm:h-24 print:w-20 print:h-20 rounded-2xl object-contain bg-white p-1 border border-slate-300 print:border-black shadow-xs" />
               <div>
-                <h1 className="text-2xl sm:text-3xl print:text-xl font-black tracking-tight text-slate-950 uppercase">BK CLINIQUE</h1>
-                <p className="text-[11px] print:text-[10px] text-slate-700 uppercase font-extrabold tracking-widest mt-0.5">
+                <h1 className="text-3xl sm:text-4xl print:text-3xl font-black tracking-tight text-slate-950 uppercase">BK CLINIQUE</h1>
+                <p className="text-xs print:text-sm text-slate-700 uppercase font-extrabold tracking-widest mt-1">
                   Rapport d&apos;Activité et de Recettes Financières
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="text-left sm:text-right text-xs print:text-[10px] space-y-0.5 text-slate-700">
-            <div>Gérante : <strong className="text-slate-900">{userProfile?.nom || 'Sougue Epiphane'}</strong></div>
+          <div className="text-left sm:text-right text-xs print:text-sm space-y-1 text-slate-700 font-medium">
+            <div>Gérante : <strong className="text-slate-900 font-bold">{userProfile?.nom || 'Sougue Epiphane'}</strong></div>
             <div>E-mail : {userProfile?.email || 'nickyshone62@gmail.com'}</div>
             <div>Édité le : <strong>{new Date().toLocaleDateString('fr-FR')}</strong> à {new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Ouagadougou' })} (UTC+0)</div>
           </div>
         </div>
 
         {/* Détails de la période & Total Général */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 print:gap-2">
-          <div className="sm:col-span-1 bg-slate-50 border border-slate-200 rounded-2xl p-3 print:p-2 text-xs print:text-[10px] print-bg-gray flex flex-col justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 print:gap-4">
+          <div className="sm:col-span-1 bg-slate-50 border border-slate-200 rounded-2xl p-4 print:p-4 text-xs print:text-sm print-bg-gray flex flex-col justify-center space-y-1.5">
             <div>
-              <span className="text-slate-500 font-medium">Période : </span>
-              <strong className="text-slate-900 font-bold">{getPeriodLabel()}</strong>
+              <span className="text-slate-600 font-semibold">Période du Rapport : </span>
+              <strong className="text-slate-900 font-black">{getPeriodLabel()}</strong>
             </div>
-            <div className="mt-1">
-              <span className="text-slate-500 font-medium">Nb d&apos;actes : </span>
-              <strong className="text-emerald-800 font-bold print-text-black">{data?.summary?.countFiltered || 0} prestations</strong>
+            <div>
+              <span className="text-slate-600 font-semibold">Nombre d&apos;actes réalisés : </span>
+              <strong className="text-emerald-800 font-black print-text-black">{data?.summary?.countFiltered || 0} prestations</strong>
             </div>
           </div>
 
-          <div className="sm:col-span-2 bg-slate-900 text-white rounded-2xl p-3.5 print:p-2.5 px-5 print:px-4 flex items-center justify-between print:bg-slate-100 print:text-black print-border">
+          <div className="sm:col-span-2 bg-slate-900 text-white rounded-2xl p-4 print:p-4 px-6 print:px-6 flex items-center justify-between print:bg-slate-100 print:text-black print-border">
             <div>
-              <span className="text-[10px] uppercase tracking-wider text-slate-300 print:text-slate-700 font-bold">Total Général des Recettes</span>
-              <h2 className="text-2xl print:text-xl font-black text-lime-400 print-text-black">
+              <span className="text-xs print:text-xs uppercase tracking-wider text-slate-300 print:text-slate-800 font-black">Total Général des Recettes</span>
+              <h2 className="text-3xl print:text-3xl font-black text-lime-400 print-text-black mt-0.5">
                 {data?.summary?.totalFiltered?.toLocaleString('fr-FR') || 0} FCFA
               </h2>
             </div>
-            <Coins className="w-8 h-8 print:w-6 print:h-6 text-lime-400 print-text-black opacity-80" />
+            <Coins className="w-10 h-10 print:w-9 print:h-9 text-lime-400 print-text-black opacity-90" />
           </div>
         </div>
 
         {/* Ventilation par Catégorie */}
-        <div className="space-y-2 print:space-y-1">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1">
-            1. Synthèse par Catégorie
+        <div className="space-y-3 print:space-y-3">
+          <h3 className="text-sm print:text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-slate-300 pb-1.5">
+            1. Synthèse des Recettes par Catégorie
           </h3>
 
-          <table className="w-full text-xs print:text-[10px] text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
-            <thead className="bg-slate-100 uppercase text-slate-700 text-[10px] font-bold border-b border-slate-200">
+          <table className="w-full text-xs print:text-sm text-left text-slate-800 border border-slate-300 rounded-xl overflow-hidden">
+            <thead className="bg-slate-100 uppercase text-slate-700 text-xs print:text-xs font-extrabold border-b border-slate-300">
               <tr>
-                <th className="p-2 print:py-1 print:px-2">Catégorie</th>
-                <th className="p-2 print:py-1 print:px-2 text-center">Nombre d&apos;actes</th>
-                <th className="p-2 print:py-1 print:px-2 text-right">Recette (FCFA)</th>
+                <th className="p-3 print:py-2.5 print:px-4">Catégorie Médicale</th>
+                <th className="p-3 print:py-2.5 print:px-4 text-center">Nombre d&apos;actes</th>
+                <th className="p-3 print:py-2.5 print:px-4 text-right">Recette Totale (FCFA)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
               {data?.byCategory?.map((c: any) => (
                 <tr key={c.id} className="hover:bg-slate-50">
-                  <td className="p-2 print:py-1 print:px-2 font-bold text-slate-900">{c.nom}</td>
-                  <td className="p-2 print:py-1 print:px-2 text-center font-semibold">{c.count}</td>
-                  <td className="p-2 print:py-1 print:px-2 text-right font-bold text-emerald-800 print-text-black">{c.total.toLocaleString('fr-FR')} FCFA</td>
+                  <td className="p-3 print:py-2.5 print:px-4 font-extrabold text-slate-900 uppercase">{c.nom}</td>
+                  <td className="p-3 print:py-2.5 print:px-4 text-center font-bold text-slate-700">{c.count}</td>
+                  <td className="p-3 print:py-2.5 print:px-4 text-right font-black text-emerald-800 print-text-black text-sm print:text-sm">{c.total.toLocaleString('fr-FR')} FCFA</td>
                 </tr>
               ))}
             </tbody>
@@ -281,58 +284,58 @@ export default function RapportsPage() {
         </div>
 
         {/* Ventilation par Service */}
-        <div className="space-y-2 print:space-y-1">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1">
-            2. Détails des Recettes par Service
+        <div className="space-y-3 print:space-y-3">
+          <h3 className="text-sm print:text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-slate-300 pb-1.5">
+            2. Détails des Recettes par Service Médical
           </h3>
 
-          <table className="w-full text-xs print:text-[10px] text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
-            <thead className="bg-slate-100 uppercase text-slate-700 text-[10px] font-bold border-b border-slate-200">
+          <table className="w-full text-xs print:text-sm text-left text-slate-800 border border-slate-300 rounded-xl overflow-hidden">
+            <thead className="bg-slate-100 uppercase text-slate-700 text-xs print:text-xs font-extrabold border-b border-slate-300">
               <tr>
-                <th className="p-2 print:py-1 print:px-2">Service</th>
-                <th className="p-2 print:py-1 print:px-2">Catégorie</th>
-                <th className="p-2 print:py-1 print:px-2 text-center">Actes</th>
-                <th className="p-2 print:py-1 print:px-2 text-right">Total FCFA</th>
+                <th className="p-3 print:py-2.5 print:px-4">Service</th>
+                <th className="p-3 print:py-2.5 print:px-4">Catégorie</th>
+                <th className="p-3 print:py-2.5 print:px-4 text-center">Actes</th>
+                <th className="p-3 print:py-2.5 print:px-4 text-right">Total FCFA</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
               {data?.byService?.map((s: any) => (
                 <tr key={s.id} className="hover:bg-slate-50">
-                  <td className="p-2 print:py-1 print:px-2 font-bold text-slate-900">{s.nom}</td>
-                  <td className="p-2 print:py-1 print:px-2 font-medium text-slate-600">{s.categorieNom}</td>
-                  <td className="p-2 print:py-1 print:px-2 text-center font-semibold">{s.count}</td>
-                  <td className="p-2 print:py-1 print:px-2 text-right font-bold text-slate-900">{s.total.toLocaleString('fr-FR')} FCFA</td>
+                  <td className="p-3 print:py-2.5 print:px-4 font-extrabold text-slate-900">{s.nom}</td>
+                  <td className="p-3 print:py-2.5 print:px-4 font-bold text-slate-600 uppercase">{s.categorieNom}</td>
+                  <td className="p-3 print:py-2.5 print:px-4 text-center font-bold text-slate-700">{s.count}</td>
+                  <td className="p-3 print:py-2.5 print:px-4 text-right font-black text-slate-950 text-sm print:text-sm">{s.total.toLocaleString('fr-FR')} FCFA</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* Liste chronologique des Prestations (Limitée à 8 items max sur le rapport imprimable pour garantie 1 page A4) */}
+        {/* Liste chronologique des Prestations */}
         {data?.transactions?.length > 0 && (
-          <div className="space-y-2 print:space-y-1">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1">
-              3. Registre des Prestations Récentes
+          <div className="space-y-3 print:space-y-3">
+            <h3 className="text-sm print:text-sm font-black uppercase tracking-wider text-slate-900 border-b-2 border-slate-300 pb-1.5">
+              3. Registre des Prestations Enregistrées
             </h3>
 
-            <table className="w-full text-xs print:text-[10px] text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
-              <thead className="bg-slate-100 uppercase text-slate-700 text-[10px] font-bold border-b border-slate-200">
+            <table className="w-full text-xs print:text-sm text-left text-slate-800 border border-slate-300 rounded-xl overflow-hidden">
+              <thead className="bg-slate-100 uppercase text-slate-700 text-xs print:text-xs font-extrabold border-b border-slate-300">
                 <tr>
-                  <th className="p-2 print:py-1 print:px-2">Date &amp; Heure</th>
-                  <th className="p-2 print:py-1 print:px-2">Catégorie</th>
-                  <th className="p-2 print:py-1 print:px-2">Service</th>
-                  <th className="p-2 print:py-1 print:px-2 text-right">Montant FCFA</th>
+                  <th className="p-2.5 print:py-2.5 print:px-4">Date &amp; Heure (UTC+0)</th>
+                  <th className="p-2.5 print:py-2.5 print:px-4">Catégorie</th>
+                  <th className="p-2.5 print:py-2.5 print:px-4">Service Réalisé</th>
+                  <th className="p-2.5 print:py-2.5 print:px-4 text-right">Montant FCFA</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {data?.transactions?.slice(0, 8).map((t: any) => (
+                {data?.transactions?.slice(0, 10).map((t: any) => (
                   <tr key={t.id} className="hover:bg-slate-50">
-                    <td className="p-2 print:py-1 print:px-2 text-slate-600 font-medium">
+                    <td className="p-2.5 print:py-2.5 print:px-4 text-slate-700 font-bold">
                       {new Date(t.datePrestation).toLocaleDateString('fr-FR')} {new Date(t.heurePrestation).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
                     </td>
-                    <td className="p-2 print:py-1 print:px-2 font-semibold text-slate-700">{t.service.categorie}</td>
-                    <td className="p-2 print:py-1 print:px-2 font-bold text-slate-900">{t.service.nom}</td>
-                    <td className="p-2 print:py-1 print:px-2 text-right font-bold text-slate-900">{t.montant.toLocaleString('fr-FR')} FCFA</td>
+                    <td className="p-2.5 print:py-2.5 print:px-4 font-bold text-slate-700 uppercase">{t.service.categorie}</td>
+                    <td className="p-2.5 print:py-2.5 print:px-4 font-extrabold text-slate-900">{t.service.nom}</td>
+                    <td className="p-2.5 print:py-2.5 print:px-4 text-right font-black text-slate-950 text-sm print:text-sm">{t.montant.toLocaleString('fr-FR')} FCFA</td>
                   </tr>
                 ))}
               </tbody>
@@ -341,9 +344,9 @@ export default function RapportsPage() {
         )}
 
         {/* Signature et validation gérante */}
-        <div className="pt-4 print:pt-2 flex justify-end items-end text-xs print:text-[10px] text-slate-700 border-t border-slate-200">
-          <div className="text-center space-y-6 print:space-y-4 pr-6">
-            <p className="font-bold uppercase text-slate-900">Visa de la Gérante</p>
+        <div className="pt-6 print:pt-6 flex justify-end items-end text-xs print:text-sm text-slate-700 border-t-2 border-slate-300">
+          <div className="text-center space-y-8 print:space-y-6 pr-6">
+            <p className="font-black uppercase text-slate-950">Visa de la Gérante</p>
           </div>
         </div>
       </div>
