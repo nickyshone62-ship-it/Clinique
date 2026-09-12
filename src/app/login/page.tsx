@@ -52,19 +52,19 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-white border border-slate-200/80 rounded-[32px] shadow-sm p-6 sm:p-8 space-y-6 relative z-10">
         {/* En-tête de la clinique */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-28 h-28 sm:w-36 sm:h-36 rounded-3xl p-1 border border-slate-200 shadow-md mb-1 overflow-hidden bg-white">
-            <img src="/logo.jpg" alt="Logo BK Clinique" className="w-full h-full object-cover rounded-2xl" />
+          <div className="inline-flex items-center justify-center w-32 h-32 sm:w-40 sm:h-40 rounded-3xl p-2 border-2 border-slate-200 shadow-md mb-2 overflow-hidden bg-white">
+            <img src="/logo.jpg" alt="Logo BK Clinique" className="w-full h-full object-contain rounded-2xl" />
           </div>
           <div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-[11px] font-bold border border-slate-200/80 uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-lime-400" />
-              BK Clinique
-            </span>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-2">
-              Connexion
+            <h1 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight uppercase">
+              BK CLINIQUE
             </h1>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold border border-slate-200/80 uppercase tracking-wider mt-2">
+              <span className="w-2 h-2 rounded-full bg-lime-400" />
+              Plateforme Médicale Gérante
+            </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium max-w-xs mx-auto">
+          <p className="text-xs sm:text-sm text-slate-500 font-semibold max-w-xs mx-auto">
             Espace d&apos;administration réservé à la gérante de la clinique.
           </p>
         </div>

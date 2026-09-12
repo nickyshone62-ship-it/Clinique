@@ -197,15 +197,15 @@ export default function RapportsPage() {
         {/* En-tête officiel de la clinique */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-900 pb-6 gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-3">
-              <img src="/logo.jpg" alt="Logo BK Clinique" className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border border-slate-300 print:border-black shadow-xs" />
+            <div className="flex items-center gap-4">
+              <img src="/logo.jpg" alt="Logo BK Clinique" className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-contain bg-white p-1 border-2 border-slate-300 print:border-black shadow-xs" />
               <div>
-                <h1 className="text-2xl font-black tracking-tight text-slate-900">BK CLINIQUE</h1>
+                <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-950 uppercase">BK CLINIQUE</h1>
+                <p className="text-xs text-slate-700 uppercase font-extrabold tracking-widest mt-1">
+                  Rapport d&apos;Activité et de Recettes Financières
+                </p>
               </div>
             </div>
-            <p className="text-xs text-slate-600 uppercase font-semibold tracking-widest">
-              Rapport d&apos;Activité et de Recettes Financières
-            </p>
           </div>
 
           <div className="text-left sm:text-right text-xs space-y-1 text-slate-700">

@@ -37,14 +37,14 @@ export function Header({ user }: HeaderProps) {
             <img 
               src="/logo.jpg" 
               alt="Logo BK Clinique" 
-              className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl object-cover shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl object-contain bg-white shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
             />
             <div>
               <div className="flex items-center gap-1.5">
-                <h1 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">BK Clinique</h1>
+                <h1 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight uppercase">BK CLINIQUE</h1>
                 <span className="w-2.5 h-2.5 rounded-full bg-lime-400 inline-block" />
               </div>
-              <p className="text-[11px] text-slate-500 hidden sm:block font-medium">Espace Gérante Administrateur</p>
+              <p className="text-xs text-slate-500 font-bold hidden sm:block">Espace Gérante Administrateur</p>
             </div>
           </Link>
         </div>
