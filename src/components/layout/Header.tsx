@@ -34,9 +34,11 @@ export function Header({ user }: HeaderProps) {
         {/* Marque Clinique */}
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
-              <Activity className="w-5 h-5" />
-            </div>
+            <img 
+              src="/logo.jpg" 
+              alt="Logo Clinique" 
+              className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-teal-500/20 border border-teal-500/30 group-hover:scale-105 transition-transform"
+            />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">Gestion Clinique</h1>

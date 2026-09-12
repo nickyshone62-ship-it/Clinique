@@ -56,8 +56,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-slate-900/90 border border-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 relative z-10">
         {/* En-tête de la clinique */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-600 text-white shadow-lg shadow-teal-500/20 mb-1">
-            <Activity className="w-8 h-8" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl p-0.5 bg-gradient-to-br from-teal-500 to-cyan-600 shadow-xl shadow-teal-500/20 mb-1 overflow-hidden">
+            <img src="/logo.jpg" alt="Logo Clinique" className="w-full h-full object-cover rounded-[14px]" />
           </div>
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
