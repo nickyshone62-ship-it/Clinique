@@ -226,7 +226,7 @@ export default function NouvellePrestationPage() {
             {loadingData ? (
               <div className="py-12 flex flex-col items-center justify-center space-y-3 text-slate-500">
                 <Loader2 className="w-8 h-8 text-slate-900 animate-spin" />
-                <span className="text-xs font-semibold">Chargement des catégories et services depuis Neon...</span>
+                <span className="text-xs font-semibold">Chargement des catégories et services...</span>
               </div>
             ) : successData ? (
               /* Carte de succès d'enregistrement */
@@ -238,7 +238,7 @@ export default function NouvellePrestationPage() {
                 <div className="space-y-1">
                   <h3 className="text-xl font-black text-slate-900">Prestation enregistrée avec succès !</h3>
                   <p className="text-xs text-slate-500 font-medium">
-                    La transaction a été sauvegardée dans la base de données Neon PostgreSQL.
+                    La prestation a été correctement enregistrée dans le registre.
                   </p>
                 </div>
 

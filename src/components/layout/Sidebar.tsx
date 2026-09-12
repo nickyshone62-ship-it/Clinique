@@ -32,13 +32,6 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
         { name: "Rapports Financiers", icon: FileBarChart, href: "/rapports", active: pathname === '/rapports', badge: "Imprimable" },
         { name: "Catalogue Services", icon: FolderTree, href: "/#services", active: false, badge: `${servicesCount} actes` },
       ]
-    },
-    {
-      title: "Système",
-      items: [
-        { name: "PostgreSQL Neon DB", icon: Database, href: "#", active: false, badge: "Connecté" },
-        { name: "Session HTTP-Only", icon: Lock, href: "#", active: false, badge: "Sécurisé" },
-      ]
     }
   ];
 
@@ -88,7 +81,7 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
       <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80 text-xs space-y-1.5 text-slate-600">
         <div className="flex items-center gap-2 text-slate-900 font-bold">
           <span className="w-2 h-2 rounded-full bg-lime-400 animate-ping" />
-          <span>Base Neon PostgreSQL</span>
+          <span>BK Clinique</span>
         </div>
         <p className="text-[11px] leading-relaxed text-slate-500 font-medium">
           {categoriesCount} Catégories &bull; {servicesCount} Services configurés.

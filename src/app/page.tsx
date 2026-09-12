@@ -52,7 +52,7 @@ export default async function Home() {
                   BK Clinique &bull; Espace Gérante Active
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                  &bull; Neon PostgreSQL SSL
+                  &bull; Session Administrateur
                 </span>
               </div>
 
@@ -120,13 +120,13 @@ export default async function Home() {
 
             <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Sécurité Session</span>
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Accès Réservé</span>
                 <div className="p-2.5 bg-slate-100 text-slate-900 rounded-2xl border border-slate-200/60">
                   <ShieldCheck className="w-5 h-5 text-slate-800" />
                 </div>
               </div>
-              <div className="text-xl font-extrabold text-slate-900">Cookie HTTP-Only</div>
-              <p className="text-xs font-medium text-slate-500">Cryptographie JWT + Bcrypt</p>
+              <div className="text-xl font-extrabold text-slate-900">Compte Gérante</div>
+              <p className="text-xs font-medium text-slate-500">Authentification sécurisée</p>
             </div>
           </div>
 
@@ -139,7 +139,7 @@ export default async function Home() {
                   <span>Catalogue des Catégories &amp; Services</span>
                 </h2>
                 <p className="text-xs font-medium text-slate-500 mt-1">
-                  Structure stockée et synchronisée dans votre base PostgreSQL Neon.
+                  Catalogue complet des actes et services médicaux de la clinique.
                 </p>
               </div>
 

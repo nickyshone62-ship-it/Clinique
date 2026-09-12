@@ -89,7 +89,7 @@ export default function RegisterPage() {
       <div className="min-h-screen bg-[#f5f6f2] flex justify-center items-center p-4 text-slate-900 font-sans">
         <div className="flex items-center gap-3 text-slate-900 font-bold">
           <Loader2 className="w-6 h-6 animate-spin text-slate-950" />
-          <span className="text-sm">Chargement du système...</span>
+          <span className="text-sm">Chargement...</span>
         </div>
       </div>
     );
