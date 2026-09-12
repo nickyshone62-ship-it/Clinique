@@ -323,15 +323,9 @@ export default function RapportsPage() {
         </div>
 
         {/* Signature et validation gérante */}
-        <div className="pt-8 flex justify-between items-end text-xs text-slate-700 border-t border-slate-200">
-          <div className="space-y-1">
-            <p>Document généré automatiquement par l&apos;application Gestion Clinique.</p>
-            <p className="text-[10px] text-slate-500">Intégrité certifiée par session administrateur gérante.</p>
-          </div>
-
-          <div className="text-center space-y-8 pr-4">
+        <div className="pt-8 flex justify-end items-end text-xs text-slate-700 border-t border-slate-200">
+          <div className="text-center space-y-12 pr-6">
             <p className="font-bold uppercase text-slate-900">Visa de la Gérante</p>
-            <p className="text-slate-400 font-serif italic text-sm">{userProfile?.nom || 'Sougue Epiphane'}</p>
           </div>
         </div>
       </div>
