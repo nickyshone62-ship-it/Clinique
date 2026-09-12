@@ -1,0 +1,62 @@
+// Prisma Schema pour l'Application de Gestion de Clinique
+// Étape 2 : Neon PostgreSQL - Structure relationnelle
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Table des utilisateurs (Préparation Étape 3 - Compte unique de la gérante)
+model User {
+  id         String   @id @default(uuid())
+  nom        String
+  email      String   @unique
+  motDePasse String   @map("mot_de_passe")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+/// Table des catégories de services (CONSULTATIONS, ÉCHOGRAPHIES, ACTES)
+model Category {
+  id        String    @id @default(uuid())
+  nom       String    @unique
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  services  Service[]
+
+  @@map("categories")
+}
+
+/// Table des services médicaux et actes de la clinique
+model Service {
+  id           String        @id @default(uuid())
+  categoryId   String        @map("category_id")
+  nom          String
+  actif        Boolean       @default(true)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  category     Category      @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  transactions Transaction[]
+
+  @@map("services")
+}
+
+/// Table des transactions (prestations enregistrées avec montant réel saisi)
+model Transaction {
+  id              String   @id @default(uuid())
+  serviceId       String   @map("service_id")
+  montant         Decimal  @db.Decimal(12, 2)
+  datePrestation  DateTime @default(now()) @map("date_prestation")
+  heurePrestation DateTime @default(now()) @map("heure_prestation")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  service         Service  @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+
+  @@map("transactions")
+}
