@@ -14,9 +14,10 @@ import {
   AlertCircle, 
   Loader2, 
   ArrowLeft,
-  Tag,
   Activity
 } from 'lucide-react';
+import { Header } from '@/components/layout/Header';
+import { Sidebar } from '@/components/layout/Sidebar';
 
 interface Service {
   id: string;
@@ -175,273 +176,275 @@ export default function NouvellePrestationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-teal-500 selection:text-white p-4 sm:p-6 lg:p-8 relative overflow-hidden">
-      {/* Arrière-plan décoratif */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-teal-500 selection:text-white">
+      <Header />
 
-      <div className="max-w-2xl mx-auto space-y-6 relative z-10">
-        {/* Navigation & Retour */}
-        <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-teal-400 transition-colors bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Retour au tableau de bord</span>
-          </Link>
+      <div className="flex">
+        <Sidebar categoriesCount={categories.length || 3} servicesCount={17} />
 
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30 px-3 py-1 rounded-full">
-            <Activity className="w-3.5 h-3.5" />
-            Burkina Faso (UTC+0)
-          </span>
-        </div>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-4xl">
+          {/* Navigation & Retour */}
+          <div className="flex items-center justify-between">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-teal-400 transition-colors bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Retour au tableau de bord</span>
+            </Link>
 
-        {/* Conteneur principal */}
-        <div className="bg-slate-900/90 border border-slate-800/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
-          {/* En-tête de la page */}
-          <div className="space-y-2 border-b border-slate-800/80 pb-5">
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider">
-              <PlusCircle className="w-4 h-4" />
-              <span>Saisie des Recettes</span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Nouvelle prestation
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Enregistrez le montant réellement payé par le patient pour la prestation réalisée.
-            </p>
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30 px-3 py-1 rounded-full">
+              <Activity className="w-3.5 h-3.5" />
+              Burkina Faso (UTC+0)
+            </span>
           </div>
 
-          {/* Affichage des Erreurs */}
-          {error && (
-            <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-2xl p-4 flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
-              <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-400" />
-              <span className="font-medium">{error}</span>
+          {/* Conteneur principal */}
+          <div className="bg-slate-900/90 border border-slate-800/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+            {/* En-tête de la page */}
+            <div className="space-y-2 border-b border-slate-800/80 pb-5">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider">
+                <PlusCircle className="w-4 h-4" />
+                <span>Saisie des Recettes</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Nouvelle prestation
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-400">
+                Enregistrez le montant réellement payé par le patient pour la prestation réalisée.
+              </p>
             </div>
-          )}
 
-          {/* Chargement initial des données */}
-          {loadingData ? (
-            <div className="py-12 flex flex-col items-center justify-center space-y-3 text-slate-400">
-              <Loader2 className="w-8 h-8 text-teal-400 animate-spin" />
-              <span className="text-xs font-medium">Chargement des catégories et services depuis Neon...</span>
-            </div>
-          ) : successData ? (
-            /* Carte de succès d'enregistrement */
-            <div className="bg-teal-500/10 border border-teal-500/30 rounded-2xl p-6 space-y-5 text-center animate-in fade-in zoom-in-95 duration-200">
-              <div className="inline-flex p-3 bg-teal-500/20 text-teal-400 rounded-2xl">
-                <CheckCircle2 className="w-10 h-10" />
+            {/* Affichage des Erreurs */}
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-2xl p-4 flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
+                <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-400" />
+                <span className="font-medium">{error}</span>
               </div>
+            )}
 
-              <div className="space-y-1">
-                <h3 className="text-lg font-bold text-white">Prestation enregistrée avec succès !</h3>
-                <p className="text-xs text-slate-300">
-                  La transaction a été sauvegardée dans la base de données Neon PostgreSQL.
-                </p>
+            {/* Chargement initial des données */}
+            {loadingData ? (
+              <div className="py-12 flex flex-col items-center justify-center space-y-3 text-slate-400">
+                <Loader2 className="w-8 h-8 text-teal-400 animate-spin" />
+                <span className="text-xs font-medium">Chargement des catégories et services depuis Neon...</span>
               </div>
+            ) : successData ? (
+              /* Carte de succès d'enregistrement */
+              <div className="bg-teal-500/10 border border-teal-500/30 rounded-2xl p-6 space-y-5 text-center animate-in fade-in zoom-in-95 duration-200">
+                <div className="inline-flex p-3 bg-teal-500/20 text-teal-400 rounded-2xl">
+                  <CheckCircle2 className="w-10 h-10" />
+                </div>
 
-              {/* Récapitulatif de la prestation */}
-              <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-left space-y-2 text-xs">
-                <div className="flex justify-between border-b border-slate-800/60 pb-2">
-                  <span className="text-slate-400">Catégorie :</span>
-                  <span className="font-semibold text-teal-300">{successData.service.categorie}</span>
+                <div className="space-y-1">
+                  <h3 className="text-lg font-bold text-white">Prestation enregistrée avec succès !</h3>
+                  <p className="text-xs text-slate-300">
+                    La transaction a été sauvegardée dans la base de données Neon PostgreSQL.
+                  </p>
                 </div>
-                <div className="flex justify-between border-b border-slate-800/60 pb-2">
-                  <span className="text-slate-400">Service :</span>
-                  <span className="font-semibold text-white">{successData.service.nom}</span>
-                </div>
-                <div className="flex justify-between border-b border-slate-800/60 pb-2">
-                  <span className="text-slate-400">Montant réellement payé :</span>
-                  <span className="font-bold text-amber-400 text-sm">
-                    {successData.montant.toLocaleString('fr-FR')} FCFA
-                  </span>
-                </div>
-                <div className="flex justify-between pt-1 text-slate-400 text-[11px]">
-                  <span>Date &amp; Heure (UTC+0) :</span>
-                  <span className="font-medium text-slate-300">
-                    {new Date(successData.datePrestation).toLocaleDateString('fr-FR')} à {new Date(successData.heurePrestation).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
-                  </span>
-                </div>
-              </div>
 
-              {/* Actions post-succès */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <button
-                  onClick={handleResetForNew}
-                  className="flex-1 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-teal-500/20 text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <PlusCircle className="w-4 h-4" />
-                  <span>Enregistrer une autre prestation</span>
-                </button>
-                <Link
-                  href="/"
-                  className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2"
-                >
-                  <span>Retour au tableau de bord</span>
-                </Link>
-              </div>
-            </div>
-          ) : (
-            /* Formulaire de création de prestation */
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* 1. Sélection de la Catégorie */}
-              <div className="space-y-1.5">
-                <label htmlFor="category" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                  1. Catégorie
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                    <FolderTree className="w-4 h-4" />
+                {/* Récapitulatif de la prestation */}
+                <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-left space-y-2 text-xs">
+                  <div className="flex justify-between border-b border-slate-800/60 pb-2">
+                    <span className="text-slate-400">Catégorie :</span>
+                    <span className="font-semibold text-teal-300">{successData.service.categorie}</span>
                   </div>
-                  <select
-                    id="category"
-                    value={selectedCategoryNom}
-                    onChange={handleCategoryChange}
-                    className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all appearance-none cursor-pointer"
+                  <div className="flex justify-between border-b border-slate-800/60 pb-2">
+                    <span className="text-slate-400">Service :</span>
+                    <span className="font-semibold text-white">{successData.service.nom}</span>
+                  </div>
+                  <div className="flex justify-between border-b border-slate-800/60 pb-2">
+                    <span className="text-slate-400">Montant réellement payé :</span>
+                    <span className="font-bold text-amber-400 text-sm">
+                      {successData.montant.toLocaleString('fr-FR')} FCFA
+                    </span>
+                  </div>
+                  <div className="flex justify-between pt-1 text-slate-400 text-[11px]">
+                    <span>Date &amp; Heure (UTC+0) :</span>
+                    <span className="font-medium text-slate-300">
+                      {new Date(successData.datePrestation).toLocaleDateString('fr-FR')} à {new Date(successData.heurePrestation).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Actions post-succès */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <button
+                    onClick={handleResetForNew}
+                    className="flex-1 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-teal-500/20 text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    {categories.map((cat) => (
-                      <option key={cat.id} value={cat.nom} className="bg-slate-900 text-white">
-                        {cat.nom} ({cat.services.length} services)
-                      </option>
-                    ))}
-                  </select>
+                    <PlusCircle className="w-4 h-4" />
+                    <span>Enregistrer une autre prestation</span>
+                  </button>
+                  <Link
+                    href="/"
+                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2"
+                  >
+                    <span>Retour au tableau de bord</span>
+                  </Link>
                 </div>
               </div>
-
-              {/* 2. Sélection du Service */}
-              <div className="space-y-1.5">
-                <label htmlFor="service" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                  2. Service
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                    <Stethoscope className="w-4 h-4" />
-                  </div>
-                  <select
-                    id="service"
-                    value={selectedServiceId}
-                    onChange={(e) => setSelectedServiceId(e.target.value)}
-                    disabled={availableServices.length === 0}
-                    className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all appearance-none cursor-pointer disabled:opacity-50"
-                  >
-                    {availableServices.length === 0 ? (
-                      <option value="">Aucun service actif dans cette catégorie</option>
-                    ) : (
-                      availableServices.map((s) => (
-                        <option key={s.id} value={s.id} className="bg-slate-900 text-white">
-                          {s.nom}
+            ) : (
+              /* Formulaire de création de prestation */
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* 1. Sélection de la Catégorie */}
+                <div className="space-y-1.5">
+                  <label htmlFor="category" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                    1. Catégorie
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                      <FolderTree className="w-4 h-4" />
+                    </div>
+                    <select
+                      id="category"
+                      value={selectedCategoryNom}
+                      onChange={handleCategoryChange}
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all appearance-none cursor-pointer"
+                    >
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.nom} className="bg-slate-900 text-white">
+                          {cat.nom} ({cat.services.length} services)
                         </option>
-                      ))
-                    )}
-                  </select>
-                </div>
-              </div>
-
-              {/* 3. Champ Montant payé (FCFA) */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between items-center">
-                  <label htmlFor="montant" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                    3. Montant payé (FCFA)
-                  </label>
-                  <span className="text-[11px] text-amber-400 font-medium flex items-center gap-1">
-                    <Coins className="w-3.5 h-3.5" />
-                    Pas de prix prédéfini
-                  </span>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                    <Coins className="w-4 h-4" />
-                  </div>
-                  <input
-                    id="montant"
-                    type="number"
-                    min="1"
-                    step="1"
-                    required
-                    value={montant}
-                    onChange={(e) => setMontant(e.target.value)}
-                    placeholder="10000"
-                    disabled={submitting}
-                    className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-16 py-3 text-base font-bold text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
-                  />
-                  <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-xs font-extrabold text-teal-400">
-                    FCFA
+                      ))}
+                    </select>
                   </div>
                 </div>
 
-                <p className="text-[11px] text-slate-400 leading-relaxed pt-0.5">
-                  Saisissez le montant réel payé par le patient pour cette prestation spécifique.
-                </p>
-              </div>
-
-              {/* 4. Champs Date et Heure (Burkina Faso UTC+0) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Champ Date */}
+                {/* 2. Sélection du Service */}
                 <div className="space-y-1.5">
-                  <label htmlFor="datePrestation" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                    4. Date de la prestation
+                  <label htmlFor="service" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                    2. Service
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                      <Calendar className="w-4 h-4" />
+                      <Stethoscope className="w-4 h-4" />
                     </div>
-                    <input
-                      id="datePrestation"
-                      type="date"
-                      required
-                      value={datePrestation}
-                      onChange={(e) => setDatePrestation(e.target.value)}
-                      disabled={submitting}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
-                    />
+                    <select
+                      id="service"
+                      value={selectedServiceId}
+                      onChange={(e) => setSelectedServiceId(e.target.value)}
+                      disabled={availableServices.length === 0}
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all appearance-none cursor-pointer disabled:opacity-50"
+                    >
+                      {availableServices.length === 0 ? (
+                        <option value="">Aucun service actif dans cette catégorie</option>
+                      ) : (
+                        availableServices.map((s) => (
+                          <option key={s.id} value={s.id} className="bg-slate-900 text-white">
+                            {s.nom}
+                          </option>
+                        ))
+                      )}
+                    </select>
                   </div>
                 </div>
 
-                {/* Champ Heure */}
+                {/* 3. Champ Montant payé (FCFA) */}
                 <div className="space-y-1.5">
-                  <label htmlFor="heurePrestation" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                    5. Heure de la prestation
-                  </label>
+                  <div className="flex justify-between items-center">
+                    <label htmlFor="montant" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                      3. Montant payé (FCFA)
+                    </label>
+                    <span className="text-[11px] text-amber-400 font-medium flex items-center gap-1">
+                      <Coins className="w-3.5 h-3.5" />
+                      Pas de prix prédéfini
+                    </span>
+                  </div>
+
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                      <Clock className="w-4 h-4" />
+                      <Coins className="w-4 h-4" />
                     </div>
                     <input
-                      id="heurePrestation"
-                      type="time"
+                      id="montant"
+                      type="number"
+                      min="1"
+                      step="1"
                       required
-                      value={heurePrestation}
-                      onChange={(e) => setHeurePrestation(e.target.value)}
+                      value={montant}
+                      onChange={(e) => setMontant(e.target.value)}
+                      placeholder="10000"
                       disabled={submitting}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-16 py-3 text-base font-bold text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
                     />
+                    <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-xs font-extrabold text-teal-400">
+                      FCFA
+                    </div>
+                  </div>
+
+                  <p className="text-[11px] text-slate-400 leading-relaxed pt-0.5">
+                    Saisissez le montant réel payé par le patient pour cette prestation spécifique.
+                  </p>
+                </div>
+
+                {/* 4. Champs Date et Heure (Burkina Faso UTC+0) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Champ Date */}
+                  <div className="space-y-1.5">
+                    <label htmlFor="datePrestation" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                      4. Date de la prestation
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                        <Calendar className="w-4 h-4" />
+                      </div>
+                      <input
+                        id="datePrestation"
+                        type="date"
+                        required
+                        value={datePrestation}
+                        onChange={(e) => setDatePrestation(e.target.value)}
+                        disabled={submitting}
+                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Champ Heure */}
+                  <div className="space-y-1.5">
+                    <label htmlFor="heurePrestation" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                      5. Heure de la prestation
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                        <Clock className="w-4 h-4" />
+                      </div>
+                      <input
+                        id="heurePrestation"
+                        type="time"
+                        required
+                        value={heurePrestation}
+                        onChange={(e) => setHeurePrestation(e.target.value)}
+                        disabled={submitting}
+                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Bouton de Validation */}
-              <button
-                type="submit"
-                disabled={submitting || !selectedServiceId || !montant || Number(montant) <= 0}
-                className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-teal-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-4"
-              >
-                {submitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Enregistrement en cours...</span>
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span>Enregistrer la prestation</span>
-                  </>
-                )}
-              </button>
-            </form>
-          )}
-        </div>
+                {/* Bouton de Validation */}
+                <button
+                  type="submit"
+                  disabled={submitting || !selectedServiceId || !montant || Number(montant) <= 0}
+                  className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-teal-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-4"
+                >
+                  {submitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Enregistrement en cours...</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span>Enregistrer la prestation</span>
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </main>
       </div>
     </div>
   );
