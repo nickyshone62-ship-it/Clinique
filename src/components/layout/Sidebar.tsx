@@ -59,21 +59,21 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
                     href={item.href}
                     className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
                       item.active
-                        ? "bg-teal-500/10 text-teal-300 border border-teal-500/30 font-semibold"
+                        ? "bg-lime-400/10 text-lime-300 border border-lime-400/30 font-semibold"
                         : "text-slate-400 hover:bg-slate-900 hover:text-slate-200"
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <Icon className={`w-4 h-4 ${item.active ? "text-teal-400" : "text-slate-500"}`} />
+                      <Icon className={`w-4 h-4 ${item.active ? "text-lime-400" : "text-slate-500"}`} />
                       <span>{item.name}</span>
                     </div>
                     {item.badge && (
                       <span className={`text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold ${
                         item.active 
-                          ? "bg-teal-500/20 text-teal-300 border border-teal-500/30" 
+                          ? "bg-lime-400/20 text-lime-300 border border-lime-400/30" 
                           : "bg-slate-900 text-slate-400 border border-slate-800"
                       }`}>
-                        {item.active && <CheckCircle2 className="w-2.5 h-2.5 text-teal-400" />}
+                        {item.active && <CheckCircle2 className="w-2.5 h-2.5 text-lime-400" />}
                         {item.badge}
                       </span>
                     )}
@@ -86,8 +86,8 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
       </div>
 
       <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800/80 text-xs space-y-1.5 text-slate-400">
-        <div className="flex items-center gap-2 text-teal-400 font-semibold">
-          <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
+        <div className="flex items-center gap-2 text-lime-400 font-semibold">
+          <span className="w-2 h-2 rounded-full bg-lime-400 animate-ping" />
           <span>Base Neon PostgreSQL</span>
         </div>
         <p className="text-[11px] leading-relaxed text-slate-400">

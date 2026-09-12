@@ -187,14 +187,14 @@ export default function NouvellePrestationPage() {
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-teal-400 transition-colors bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-lime-400 transition-colors bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Retour au tableau de bord</span>
             </Link>
 
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30 px-3 py-1 rounded-full">
-              <Activity className="w-3.5 h-3.5" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-lime-400/10 text-lime-400 border border-lime-400/30 px-3 py-1 rounded-full">
+              <Activity className="w-3.5 h-3.5 text-lime-400" />
               Burkina Faso (UTC+0)
             </span>
           </div>
@@ -203,8 +203,8 @@ export default function NouvellePrestationPage() {
           <div className="bg-slate-900/90 border border-slate-800/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
             {/* En-tête de la page */}
             <div className="space-y-2 border-b border-slate-800/80 pb-5">
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider">
-                <PlusCircle className="w-4 h-4" />
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-lime-400 uppercase tracking-wider">
+                <PlusCircle className="w-4 h-4 text-lime-400" />
                 <span>Saisie des Recettes</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -226,13 +226,13 @@ export default function NouvellePrestationPage() {
             {/* Chargement initial des données */}
             {loadingData ? (
               <div className="py-12 flex flex-col items-center justify-center space-y-3 text-slate-400">
-                <Loader2 className="w-8 h-8 text-teal-400 animate-spin" />
+                <Loader2 className="w-8 h-8 text-lime-400 animate-spin" />
                 <span className="text-xs font-medium">Chargement des catégories et services depuis Neon...</span>
               </div>
             ) : successData ? (
               /* Carte de succès d'enregistrement */
-              <div className="bg-teal-500/10 border border-teal-500/30 rounded-2xl p-6 space-y-5 text-center animate-in fade-in zoom-in-95 duration-200">
-                <div className="inline-flex p-3 bg-teal-500/20 text-teal-400 rounded-2xl">
+              <div className="bg-lime-400/10 border border-lime-400/30 rounded-2xl p-6 space-y-5 text-center animate-in fade-in zoom-in-95 duration-200">
+                <div className="inline-flex p-3 bg-lime-400/20 text-lime-400 rounded-2xl">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
 
@@ -247,7 +247,7 @@ export default function NouvellePrestationPage() {
                 <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-left space-y-2 text-xs">
                   <div className="flex justify-between border-b border-slate-800/60 pb-2">
                     <span className="text-slate-400">Catégorie :</span>
-                    <span className="font-semibold text-teal-300">{successData.service.categorie}</span>
+                    <span className="font-semibold text-lime-300">{successData.service.categorie}</span>
                   </div>
                   <div className="flex justify-between border-b border-slate-800/60 pb-2">
                     <span className="text-slate-400">Service :</span>
@@ -255,7 +255,7 @@ export default function NouvellePrestationPage() {
                   </div>
                   <div className="flex justify-between border-b border-slate-800/60 pb-2">
                     <span className="text-slate-400">Montant réellement payé :</span>
-                    <span className="font-bold text-amber-400 text-sm">
+                    <span className="font-bold text-lime-400 text-sm">
                       {successData.montant.toLocaleString('fr-FR')} FCFA
                     </span>
                   </div>
@@ -271,9 +271,9 @@ export default function NouvellePrestationPage() {
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <button
                     onClick={handleResetForNew}
-                    className="flex-1 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-teal-500/20 text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="flex-1 bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-xl shadow-lg shadow-lime-500/20 text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <PlusCircle className="w-4 h-4" />
+                    <PlusCircle className="w-4 h-4 text-slate-950" />
                     <span>Enregistrer une autre prestation</span>
                   </button>
                   <Link
@@ -300,7 +300,7 @@ export default function NouvellePrestationPage() {
                       id="category"
                       value={selectedCategoryNom}
                       onChange={handleCategoryChange}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all appearance-none cursor-pointer"
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all appearance-none cursor-pointer"
                     >
                       {categories.map((cat) => (
                         <option key={cat.id} value={cat.nom} className="bg-slate-900 text-white">
@@ -325,7 +325,7 @@ export default function NouvellePrestationPage() {
                       value={selectedServiceId}
                       onChange={(e) => setSelectedServiceId(e.target.value)}
                       disabled={availableServices.length === 0}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all appearance-none cursor-pointer disabled:opacity-50"
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all appearance-none cursor-pointer disabled:opacity-50"
                     >
                       {availableServices.length === 0 ? (
                         <option value="">Aucun service actif dans cette catégorie</option>
@@ -346,7 +346,7 @@ export default function NouvellePrestationPage() {
                     <label htmlFor="montant" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
                       3. Montant payé (FCFA)
                     </label>
-                    <span className="text-[11px] text-amber-400 font-medium flex items-center gap-1">
+                    <span className="text-[11px] text-lime-400 font-medium flex items-center gap-1">
                       <Coins className="w-3.5 h-3.5" />
                       Pas de prix prédéfini
                     </span>
@@ -366,9 +366,9 @@ export default function NouvellePrestationPage() {
                       onChange={(e) => setMontant(e.target.value)}
                       placeholder="10000"
                       disabled={submitting}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-16 py-3 text-base font-bold text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-16 py-3 text-base font-bold text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
                     />
-                    <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-xs font-extrabold text-teal-400">
+                    <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-xs font-extrabold text-lime-400">
                       FCFA
                     </div>
                   </div>
@@ -396,7 +396,7 @@ export default function NouvellePrestationPage() {
                         value={datePrestation}
                         onChange={(e) => setDatePrestation(e.target.value)}
                         disabled={submitting}
-                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
                       />
                     </div>
                   </div>
@@ -417,7 +417,7 @@ export default function NouvellePrestationPage() {
                         value={heurePrestation}
                         onChange={(e) => setHeurePrestation(e.target.value)}
                         disabled={submitting}
-                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
                       />
                     </div>
                   </div>
@@ -427,7 +427,7 @@ export default function NouvellePrestationPage() {
                 <button
                   type="submit"
                   disabled={submitting || !selectedServiceId || !montant || Number(montant) <= 0}
-                  className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-teal-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-4"
+                  className="w-full bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-lime-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-4"
                 >
                   {submitting ? (
                     <>

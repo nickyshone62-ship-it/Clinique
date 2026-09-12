@@ -111,7 +111,7 @@ export default function RapportsPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900 border border-slate-800 p-4 rounded-2xl">
           <Link
             href="/recettes"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-teal-400 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-lime-400 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Retour aux Recettes &amp; Historique</span>
@@ -120,9 +120,9 @@ export default function RapportsPage() {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={handlePrint}
-              className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold py-2 px-4 rounded-xl text-xs transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20 cursor-pointer"
+              className="bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-2 px-4 rounded-xl text-xs transition-all flex items-center gap-2 shadow-lg shadow-lime-500/20 cursor-pointer"
             >
-              <Printer className="w-4 h-4" />
+              <Printer className="w-4 h-4 text-slate-950" />
               <span>Imprimer le Rapport (PDF)</span>
             </button>
           </div>
@@ -130,8 +130,8 @@ export default function RapportsPage() {
 
         {/* Sélection des filtres du rapport */}
         <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-4">
-          <div className="flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider">
-            <FileText className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-xs font-bold text-lime-400 uppercase tracking-wider">
+            <FileText className="w-4 h-4 text-lime-400" />
             <span>Options d&apos;Édition du Rapport</span>
           </div>
 

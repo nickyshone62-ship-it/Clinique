@@ -65,7 +65,7 @@ export default async function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-teal-500 selection:text-white">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-lime-400 selection:text-slate-950">
       {/* En-tête principal avec profil gérante et déconnexion */}
       <Header user={user} />
 
@@ -76,12 +76,12 @@ export default async function Home() {
         {/* Contenu principal du Tableau de bord */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-8 max-w-7xl">
           {/* Banner de bienvenue */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-teal-950 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative z-10 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 text-teal-300 text-xs font-semibold border border-teal-500/30">
-                <Sparkles className="w-4 h-4 text-teal-400" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold border border-lime-400/30">
+                <Sparkles className="w-4 h-4 text-lime-400" />
                 <span>Session Sécurisée Active</span>
               </div>
 
@@ -96,12 +96,12 @@ export default async function Home() {
 
               <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-300">
                 <div className="flex items-center gap-2 bg-slate-950/80 px-3.5 py-2 rounded-xl border border-slate-800">
-                  <UserCheck className="w-4 h-4 text-teal-400" />
+                  <UserCheck className="w-4 h-4 text-lime-400" />
                   <span>Compte Gérante : <strong className="text-white">{user.email}</strong></span>
                 </div>
                 <div className="flex items-center gap-2 bg-slate-950/80 px-3.5 py-2 rounded-xl border border-slate-800">
-                  <Database className="w-4 h-4 text-teal-400" />
-                  <span>PostgreSQL Neon : <strong className="text-teal-400">Connecté (SSL)</strong></span>
+                  <Database className="w-4 h-4 text-lime-400" />
+                  <span>PostgreSQL Neon : <strong className="text-lime-400">Connecté (SSL)</strong></span>
                 </div>
               </div>
             </div>
@@ -109,10 +109,10 @@ export default async function Home() {
 
           {/* Grille de métriques réelles */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-teal-500/40 transition-colors">
+            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-lime-500/40 transition-colors">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Catégories</span>
-                <div className="p-2.5 bg-teal-500/10 text-teal-400 rounded-xl">
+                <div className="p-2.5 bg-lime-400/10 text-lime-400 rounded-xl">
                   <FolderTree className="w-5 h-5" />
                 </div>
               </div>
@@ -120,10 +120,10 @@ export default async function Home() {
               <p className="text-xs text-slate-400">Consultations, Échographies, Actes</p>
             </div>
 
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-teal-500/40 transition-colors">
+            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-lime-500/40 transition-colors">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Services Médicaux</span>
-                <div className="p-2.5 bg-cyan-500/10 text-cyan-400 rounded-xl">
+                <div className="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-xl">
                   <Stethoscope className="w-5 h-5" />
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default async function Home() {
               <p className="text-xs text-slate-400">Actes configurés &amp; actifs</p>
             </div>
 
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-teal-500/40 transition-colors">
+            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-lime-500/40 transition-colors">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Fixation des Prix</span>
                 <div className="p-2.5 bg-amber-500/10 text-amber-400 rounded-xl">
@@ -142,7 +142,7 @@ export default async function Home() {
               <p className="text-xs text-slate-400">Montant saisi lors de chaque prestation</p>
             </div>
 
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-teal-500/40 transition-colors">
+            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg space-y-2 hover:border-lime-500/40 transition-colors">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Sécurité Session</span>
                 <div className="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-xl">
@@ -159,7 +159,7 @@ export default async function Home() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
               <div>
                 <h2 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-                  <FolderTree className="w-5 h-5 text-teal-400" />
+                  <FolderTree className="w-5 h-5 text-lime-400" />
                   <span>Catalogue des Catégories &amp; Services</span>
                 </h2>
                 <p className="text-xs text-slate-400 mt-1">
@@ -168,7 +168,7 @@ export default async function Home() {
               </div>
 
               <div className="bg-slate-950 border border-slate-800 px-3.5 py-1.5 rounded-xl text-xs text-slate-300 font-medium self-start sm:self-auto">
-                Devise : <span className="text-teal-400 font-bold">FCFA</span>
+                Devise : <span className="text-lime-400 font-bold">FCFA</span>
               </div>
             </div>
 
@@ -176,15 +176,15 @@ export default async function Home() {
               {categories.map((cat) => (
                 <div 
                   key={cat.id} 
-                  className="bg-slate-950/70 border border-slate-800/90 rounded-2xl p-5 space-y-4 hover:border-teal-500/30 transition-all flex flex-col justify-between"
+                  className="bg-slate-950/70 border border-slate-800/90 rounded-2xl p-5 space-y-4 hover:border-lime-500/30 transition-all flex flex-col justify-between"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <h3 className="text-sm font-bold text-white tracking-wide uppercase flex items-center gap-2">
-                        <Tag className="w-4 h-4 text-teal-400" />
+                        <Tag className="w-4 h-4 text-lime-400" />
                         <span>{cat.nom}</span>
                       </h3>
-                      <span className="text-[11px] font-semibold bg-teal-500/10 text-teal-300 border border-teal-500/20 px-2.5 py-0.5 rounded-full">
+                      <span className="text-[11px] font-semibold bg-lime-400/10 text-lime-300 border border-lime-400/20 px-2.5 py-0.5 rounded-full">
                         {cat.services.length} services
                       </span>
                     </div>
@@ -196,7 +196,7 @@ export default async function Home() {
                           className="flex items-center justify-between text-xs bg-slate-900/80 border border-slate-800/60 rounded-xl px-3 py-2 text-slate-200"
                         >
                           <span className="font-medium">{s.nom}</span>
-                          <span className="text-[10px] text-teal-400 font-semibold bg-teal-500/10 px-2 py-0.5 rounded-md">
+                          <span className="text-[10px] text-lime-400 font-semibold bg-lime-400/10 px-2 py-0.5 rounded-md">
                             Actif
                           </span>
                         </li>
@@ -228,23 +228,23 @@ export default async function Home() {
                     s.completed
                       ? "bg-slate-950/80 border-slate-800"
                       : s.current
-                      ? "bg-teal-500/10 border-teal-500/30"
+                      ? "bg-lime-400/10 border-lime-400/30"
                       : "bg-slate-950/40 border-slate-900 opacity-60"
                   }`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`mt-0.5 w-7 h-7 rounded-xl flex items-center justify-center text-xs font-bold ${
                       s.completed
-                        ? "bg-teal-500 text-slate-950"
+                        ? "bg-lime-400 text-slate-950"
                         : s.current
-                        ? "bg-teal-400 text-slate-950 animate-pulse"
+                        ? "bg-lime-400 text-slate-950 animate-pulse"
                         : "bg-slate-800 text-slate-400"
                     }`}>
                       {idx + 1}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-teal-400 uppercase tracking-wider">{s.step}</span>
+                        <span className="text-xs font-semibold text-lime-400 uppercase tracking-wider">{s.step}</span>
                         <h4 className="text-sm font-bold text-white">{s.title}</h4>
                       </div>
                       <p className="text-xs text-slate-400 mt-1">{s.description}</p>
@@ -254,15 +254,15 @@ export default async function Home() {
                   <div className="flex items-center gap-2 text-xs font-medium self-end sm:self-center">
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 ${
                       s.completed
-                        ? "bg-teal-500/10 text-teal-300 border border-teal-500/20"
+                        ? "bg-lime-400/10 text-lime-300 border border-lime-400/20"
                         : s.current
                         ? "bg-amber-500/10 text-amber-300 border border-amber-500/20"
                         : "bg-slate-800 text-slate-500"
                     }`}>
-                      {s.completed && <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />}
+                      {s.completed && <CheckCircle2 className="w-3.5 h-3.5 text-lime-400" />}
                       {s.status}
                     </span>
-                    {s.current && <ArrowRight className="w-4 h-4 text-teal-400 animate-pulse" />}
+                    {s.current && <ArrowRight className="w-4 h-4 text-lime-400 animate-pulse" />}
                   </div>
                 </div>
               ))}

@@ -96,19 +96,19 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 text-slate-100 font-sans selection:bg-teal-500 selection:text-white relative overflow-hidden">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 text-slate-100 font-sans selection:bg-lime-400 selection:text-slate-950 relative overflow-hidden">
       {/* Effets lumineux d'arrière-plan */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-full max-w-md bg-slate-900/90 border border-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 relative z-10">
         {/* En-tête */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl p-0.5 bg-gradient-to-br from-teal-500 to-cyan-600 shadow-xl shadow-teal-500/20 mb-1 overflow-hidden">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl p-0.5 bg-gradient-to-br from-lime-400 to-emerald-500 shadow-xl shadow-lime-500/20 mb-1 overflow-hidden">
             <img src="/logo.jpg" alt="Logo Clinique" className="w-full h-full object-cover rounded-[14px]" />
           </div>
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
+            <span className="text-xs font-semibold uppercase tracking-wider text-lime-400">
               Gestion Clinique
             </span>
             <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
@@ -137,15 +137,15 @@ export default function RegisterPage() {
 
             <Link
               href="/login"
-              className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-teal-500/25 transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-xl shadow-lg shadow-lime-500/25 transition-all duration-200 flex items-center justify-center gap-2"
             >
               Accéder à la page de connexion
             </Link>
           </div>
         ) : success ? (
           /* En cas de succès */
-          <div className="bg-teal-500/10 border border-teal-500/30 text-teal-300 text-sm rounded-2xl p-6 text-center space-y-3 animate-in fade-in zoom-in-95 duration-200">
-            <CheckCircle2 className="w-12 h-12 text-teal-400 mx-auto" />
+          <div className="bg-lime-400/10 border border-lime-400/30 text-lime-300 text-sm rounded-2xl p-6 text-center space-y-3 animate-in fade-in zoom-in-95 duration-200">
+            <CheckCircle2 className="w-12 h-12 text-lime-400 mx-auto" />
             <h3 className="text-lg font-bold text-white">Compte créé avec succès !</h3>
             <p className="text-xs text-slate-300">
               Connexion en cours et redirection vers votre espace clinique...
@@ -179,7 +179,7 @@ export default function RegisterPage() {
                   onChange={(e) => setNom(e.target.value)}
                   placeholder="Gérante Clinique"
                   disabled={loading}
-                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
                 />
               </div>
             </div>
@@ -201,7 +201,7 @@ export default function RegisterPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="gerante@clinique.com"
                   disabled={loading}
-                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
                 />
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
                   disabled={loading}
-                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-11 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-11 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
                 />
                 <button
                   type="button"
@@ -253,7 +253,7 @@ export default function RegisterPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••••••"
                   disabled={loading}
-                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all disabled:opacity-50"
+                  className="w-full bg-slate-950/70 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
                 />
               </div>
             </div>
@@ -262,7 +262,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading || !nom || !email || !password || !confirmPassword}
-              className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-teal-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-2"
+              className="w-full bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-xl shadow-lg shadow-lime-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-2"
             >
               {loading ? (
                 <>
@@ -279,7 +279,7 @@ export default function RegisterPage() {
         {/* Lien vers connexion */}
         <div className="pt-2 text-center border-t border-slate-800/60 flex justify-between items-center text-xs text-slate-400">
           <span>Déjà un compte ?</span>
-          <Link href="/login" className="text-teal-400 hover:text-teal-300 font-medium transition-colors">
+          <Link href="/login" className="text-lime-400 hover:text-lime-300 font-medium transition-colors">
             Se connecter
           </Link>
         </div>

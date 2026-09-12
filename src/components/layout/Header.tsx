@@ -37,13 +37,13 @@ export function Header({ user }: HeaderProps) {
             <img 
               src="/logo.jpg" 
               alt="Logo Clinique" 
-              className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-teal-500/20 border border-teal-500/30 group-hover:scale-105 transition-transform"
+              className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-lime-500/20 border border-lime-500/30 group-hover:scale-105 transition-transform"
             />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">Gestion Clinique</h1>
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30 px-2 py-0.5 rounded-full">
-                  <ShieldCheck className="w-3 h-3" />
+                <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-lime-400/10 text-lime-400 border border-lime-400/30 px-2 py-0.5 rounded-full">
+                  <ShieldCheck className="w-3 h-3 text-lime-400" />
                   Neon DB
                 </span>
               </div>
@@ -59,26 +59,26 @@ export function Header({ user }: HeaderProps) {
             href="/recettes"
             className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold px-3 py-2 rounded-xl border border-slate-700 transition-all flex items-center gap-1.5"
           >
-            <Coins className="w-4 h-4 text-amber-400" />
+            <Coins className="w-4 h-4 text-lime-400" />
             <span className="hidden md:inline">Recettes &amp; Historique</span>
           </Link>
 
           {/* Raccourci Nouvelle Prestation */}
           <Link
             href="/nouvelle-prestation"
-            className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white text-xs font-semibold px-3 py-2 rounded-xl shadow-md shadow-teal-500/20 transition-all flex items-center gap-1.5 active:scale-95"
+            className="bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold text-xs px-3 py-2 rounded-xl shadow-md shadow-lime-500/20 transition-all flex items-center gap-1.5 active:scale-95"
           >
-            <PlusCircle className="w-4 h-4" />
+            <PlusCircle className="w-4 h-4 text-slate-950" />
             <span className="hidden sm:inline">Prestation</span>
           </Link>
 
           <div className="flex items-center gap-2 sm:gap-3 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-xl">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white font-bold text-xs shadow-md">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-lime-400 to-emerald-500 flex items-center justify-center text-slate-950 font-bold text-xs shadow-md">
               {user?.nom ? user.nom.substring(0, 2).toUpperCase() : 'GC'}
             </div>
             <div className="text-left text-xs hidden lg:block">
               <div className="font-semibold text-slate-200 flex items-center gap-1">
-                <UserCheck className="w-3 h-3 text-teal-400" />
+                <UserCheck className="w-3 h-3 text-lime-400" />
                 <span>{user?.nom || 'Gérante'}</span>
               </div>
               <div className="text-slate-400 text-[11px] truncate max-w-[130px]">
