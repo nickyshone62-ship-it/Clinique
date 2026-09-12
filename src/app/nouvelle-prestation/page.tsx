@@ -170,13 +170,12 @@ export default function NouvellePrestationPage() {
       timeZone: 'Africa/Ouagadougou',
       hour: '2-digit',
       minute: '2-digit',
-      hour12: false,
     });
     setHeurePrestation(localTimeStr);
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-teal-500 selection:text-white">
+    <div className="min-h-screen bg-[#f5f6f2] text-slate-900 font-sans selection:bg-lime-400 selection:text-slate-950">
       <Header />
 
       <div className="flex">
@@ -187,81 +186,81 @@ export default function NouvellePrestationPage() {
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-lime-400 transition-colors bg-slate-900/80 border border-slate-800 px-3.5 py-2 rounded-xl"
+              className="inline-flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-slate-950 transition-colors bg-white border border-slate-200/80 px-4 py-2 rounded-full shadow-xs"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 text-slate-900" />
               <span>Retour au tableau de bord</span>
             </Link>
 
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-lime-400/10 text-lime-400 border border-lime-400/30 px-3 py-1 rounded-full">
-              <Activity className="w-3.5 h-3.5 text-lime-400" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-white text-slate-800 border border-slate-200/80 px-4 py-1.5 rounded-full shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-lime-400" />
               Burkina Faso (UTC+0)
             </span>
           </div>
 
-          {/* Conteneur principal */}
-          <div className="bg-slate-900/90 border border-slate-800/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+          {/* Conteneur principal - Carte Blanche Arrondie */}
+          <div className="bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-10 space-y-6 shadow-sm">
             {/* En-tête de la page */}
-            <div className="space-y-2 border-b border-slate-800/80 pb-5">
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-lime-400 uppercase tracking-wider">
-                <PlusCircle className="w-4 h-4 text-lime-400" />
+            <div className="space-y-2 border-b border-slate-100 pb-5">
+              <div className="inline-flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-wider">
+                <PlusCircle className="w-4 h-4 text-slate-900" />
                 <span>Saisie des Recettes</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Nouvelle prestation
+              <h1 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                Nouvelle prestation<span className="w-3 h-3 rounded-full bg-lime-400 inline-block ml-1" />
               </h1>
-              <p className="text-xs sm:text-sm text-slate-400">
+              <p className="text-xs sm:text-sm text-slate-500 font-medium">
                 Enregistrez le montant réellement payé par le patient pour la prestation réalisée.
               </p>
             </div>
 
             {/* Affichage des Erreurs */}
             {error && (
-              <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-2xl p-4 flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
-                <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-400" />
+              <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-2xl p-4 flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
+                <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-600" />
                 <span className="font-medium">{error}</span>
               </div>
             )}
 
             {/* Chargement initial des données */}
             {loadingData ? (
-              <div className="py-12 flex flex-col items-center justify-center space-y-3 text-slate-400">
-                <Loader2 className="w-8 h-8 text-lime-400 animate-spin" />
-                <span className="text-xs font-medium">Chargement des catégories et services depuis Neon...</span>
+              <div className="py-12 flex flex-col items-center justify-center space-y-3 text-slate-500">
+                <Loader2 className="w-8 h-8 text-slate-900 animate-spin" />
+                <span className="text-xs font-semibold">Chargement des catégories et services depuis Neon...</span>
               </div>
             ) : successData ? (
               /* Carte de succès d'enregistrement */
-              <div className="bg-lime-400/10 border border-lime-400/30 rounded-2xl p-6 space-y-5 text-center animate-in fade-in zoom-in-95 duration-200">
-                <div className="inline-flex p-3 bg-lime-400/20 text-lime-400 rounded-2xl">
+              <div className="bg-slate-50 border border-slate-200/80 rounded-[28px] p-8 space-y-6 text-center animate-in fade-in zoom-in-95 duration-200">
+                <div className="inline-flex p-4 bg-lime-400 text-slate-950 rounded-full shadow-sm">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-lg font-bold text-white">Prestation enregistrée avec succès !</h3>
-                  <p className="text-xs text-slate-300">
+                  <h3 className="text-xl font-black text-slate-900">Prestation enregistrée avec succès !</h3>
+                  <p className="text-xs text-slate-500 font-medium">
                     La transaction a été sauvegardée dans la base de données Neon PostgreSQL.
                   </p>
                 </div>
 
                 {/* Récapitulatif de la prestation */}
-                <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-left space-y-2 text-xs">
-                  <div className="flex justify-between border-b border-slate-800/60 pb-2">
-                    <span className="text-slate-400">Catégorie :</span>
-                    <span className="font-semibold text-lime-300">{successData.service.categorie}</span>
+                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 text-left space-y-3 text-xs shadow-xs">
+                  <div className="flex justify-between border-b border-slate-100 pb-2">
+                    <span className="text-slate-500 font-medium">Catégorie :</span>
+                    <span className="font-bold text-slate-900">{successData.service.categorie}</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800/60 pb-2">
-                    <span className="text-slate-400">Service :</span>
-                    <span className="font-semibold text-white">{successData.service.nom}</span>
+                  <div className="flex justify-between border-b border-slate-100 pb-2">
+                    <span className="text-slate-500 font-medium">Service :</span>
+                    <span className="font-bold text-slate-900">{successData.service.nom}</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800/60 pb-2">
-                    <span className="text-slate-400">Montant réellement payé :</span>
-                    <span className="font-bold text-lime-400 text-sm">
+                  <div className="flex justify-between border-b border-slate-100 pb-2">
+                    <span className="text-slate-500 font-medium">Montant réellement payé :</span>
+                    <span className="font-black text-slate-950 text-base bg-lime-400 px-3 py-0.5 rounded-full">
                       {successData.montant.toLocaleString('fr-FR')} FCFA
                     </span>
                   </div>
-                  <div className="flex justify-between pt-1 text-slate-400 text-[11px]">
+                  <div className="flex justify-between pt-1 text-slate-500 text-[11px] font-medium">
                     <span>Date &amp; Heure (UTC+0) :</span>
-                    <span className="font-medium text-slate-300">
+                    <span className="font-bold text-slate-800">
                       {new Date(successData.datePrestation).toLocaleDateString('fr-FR')} à {new Date(successData.heurePrestation).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
                     </span>
                   </div>
@@ -271,14 +270,14 @@ export default function NouvellePrestationPage() {
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <button
                     onClick={handleResetForNew}
-                    className="flex-1 bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-3 px-4 rounded-xl shadow-lg shadow-lime-500/20 text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="flex-1 bg-slate-950 hover:bg-slate-800 text-white font-bold py-3.5 px-6 rounded-full shadow-md text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <PlusCircle className="w-4 h-4 text-slate-950" />
+                    <PlusCircle className="w-4 h-4 text-lime-400" />
                     <span>Enregistrer une autre prestation</span>
                   </button>
                   <Link
                     href="/"
-                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2"
+                    className="bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold py-3.5 px-6 rounded-full text-xs transition-all flex items-center justify-center gap-2"
                   >
                     <span>Retour au tableau de bord</span>
                   </Link>
@@ -286,24 +285,24 @@ export default function NouvellePrestationPage() {
               </div>
             ) : (
               /* Formulaire de création de prestation */
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 {/* 1. Sélection de la Catégorie */}
                 <div className="space-y-1.5">
-                  <label htmlFor="category" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                    1. Catégorie
+                  <label htmlFor="category" className="block text-xs font-black uppercase tracking-wider text-slate-400">
+                    1. Catégorie Médicale
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                      <FolderTree className="w-4 h-4" />
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                      <FolderTree className="w-4 h-4 text-slate-700" />
                     </div>
                     <select
                       id="category"
                       value={selectedCategoryNom}
                       onChange={handleCategoryChange}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all appearance-none cursor-pointer"
+                      className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl pl-11 pr-4 py-3.5 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:bg-white transition-all appearance-none cursor-pointer"
                     >
                       {categories.map((cat) => (
-                        <option key={cat.id} value={cat.nom} className="bg-slate-900 text-white">
+                        <option key={cat.id} value={cat.nom} className="bg-white text-slate-900 font-medium">
                           {cat.nom} ({cat.services.length} services)
                         </option>
                       ))}
@@ -313,25 +312,25 @@ export default function NouvellePrestationPage() {
 
                 {/* 2. Sélection du Service */}
                 <div className="space-y-1.5">
-                  <label htmlFor="service" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                    2. Service
+                  <label htmlFor="service" className="block text-xs font-black uppercase tracking-wider text-slate-400">
+                    2. Service Médical
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                      <Stethoscope className="w-4 h-4" />
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                      <Stethoscope className="w-4 h-4 text-slate-700" />
                     </div>
                     <select
                       id="service"
                       value={selectedServiceId}
                       onChange={(e) => setSelectedServiceId(e.target.value)}
                       disabled={availableServices.length === 0}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all appearance-none cursor-pointer disabled:opacity-50"
+                      className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl pl-11 pr-4 py-3.5 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:bg-white transition-all appearance-none cursor-pointer disabled:opacity-50"
                     >
                       {availableServices.length === 0 ? (
                         <option value="">Aucun service actif dans cette catégorie</option>
                       ) : (
                         availableServices.map((s) => (
-                          <option key={s.id} value={s.id} className="bg-slate-900 text-white">
+                          <option key={s.id} value={s.id} className="bg-white text-slate-900 font-medium">
                             {s.nom}
                           </option>
                         ))
@@ -343,18 +342,18 @@ export default function NouvellePrestationPage() {
                 {/* 3. Champ Montant payé (FCFA) */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between items-center">
-                    <label htmlFor="montant" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                      3. Montant payé (FCFA)
+                    <label htmlFor="montant" className="block text-xs font-black uppercase tracking-wider text-slate-400">
+                      3. Montant réellement payé (FCFA)
                     </label>
-                    <span className="text-[11px] text-lime-400 font-medium flex items-center gap-1">
-                      <Coins className="w-3.5 h-3.5" />
-                      Pas de prix prédéfini
+                    <span className="text-[11px] text-slate-600 font-bold bg-slate-100 border border-slate-200 px-3 py-0.5 rounded-full flex items-center gap-1">
+                      <Coins className="w-3.5 h-3.5 text-slate-700" />
+                      Prix variable
                     </span>
                   </div>
 
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                      <Coins className="w-4 h-4" />
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                      <Coins className="w-4 h-4 text-slate-700" />
                     </div>
                     <input
                       id="montant"
@@ -366,14 +365,14 @@ export default function NouvellePrestationPage() {
                       onChange={(e) => setMontant(e.target.value)}
                       placeholder="10000"
                       disabled={submitting}
-                      className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-16 py-3 text-base font-bold text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
+                      className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl pl-11 pr-20 py-3.5 text-lg font-black text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:bg-white transition-all disabled:opacity-50"
                     />
-                    <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-xs font-extrabold text-lime-400">
+                    <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-xs font-black text-slate-900 bg-lime-400 my-2 rounded-lg px-2">
                       FCFA
                     </div>
                   </div>
 
-                  <p className="text-[11px] text-slate-400 leading-relaxed pt-0.5">
+                  <p className="text-[11px] text-slate-500 font-medium leading-relaxed pt-0.5">
                     Saisissez le montant réel payé par le patient pour cette prestation spécifique.
                   </p>
                 </div>
@@ -382,12 +381,12 @@ export default function NouvellePrestationPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Champ Date */}
                   <div className="space-y-1.5">
-                    <label htmlFor="datePrestation" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                    <label htmlFor="datePrestation" className="block text-xs font-black uppercase tracking-wider text-slate-400">
                       4. Date de la prestation
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                        <Calendar className="w-4 h-4" />
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                        <Calendar className="w-4 h-4 text-slate-700" />
                       </div>
                       <input
                         id="datePrestation"
@@ -396,19 +395,19 @@ export default function NouvellePrestationPage() {
                         value={datePrestation}
                         onChange={(e) => setDatePrestation(e.target.value)}
                         disabled={submitting}
-                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
+                        className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl pl-11 pr-4 py-3.5 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:bg-white transition-all disabled:opacity-50"
                       />
                     </div>
                   </div>
 
                   {/* Champ Heure */}
                   <div className="space-y-1.5">
-                    <label htmlFor="heurePrestation" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                    <label htmlFor="heurePrestation" className="block text-xs font-black uppercase tracking-wider text-slate-400">
                       5. Heure de la prestation
                     </label>
                     <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                        <Clock className="w-4 h-4" />
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                        <Clock className="w-4 h-4 text-slate-700" />
                       </div>
                       <input
                         id="heurePrestation"
@@ -417,26 +416,26 @@ export default function NouvellePrestationPage() {
                         value={heurePrestation}
                         onChange={(e) => setHeurePrestation(e.target.value)}
                         disabled={submitting}
-                        className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-lime-400/50 focus:border-lime-400 transition-all disabled:opacity-50"
+                        className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl pl-11 pr-4 py-3.5 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:bg-white transition-all disabled:opacity-50"
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Bouton de Validation */}
+                {/* Bouton de Validation - Style Pill Dark */}
                 <button
                   type="submit"
                   disabled={submitting || !selectedServiceId || !montant || Number(montant) <= 0}
-                  className="w-full bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-lime-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-4"
+                  className="w-full bg-slate-950 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-full shadow-md transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.99] mt-6"
                 >
                   {submitting ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader2 className="w-5 h-5 animate-spin text-lime-400" />
                       <span>Enregistrement en cours...</span>
                     </>
                   ) : (
                     <>
-                      <CheckCircle2 className="w-5 h-5" />
+                      <CheckCircle2 className="w-5 h-5 text-lime-400" />
                       <span>Enregistrer la prestation</span>
                     </>
                   )}

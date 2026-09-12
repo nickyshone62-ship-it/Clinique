@@ -29,7 +29,7 @@ export function Header({ user }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-slate-100 px-4 sm:px-8 py-3.5 shadow-lg">
+    <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80 text-slate-900 px-4 sm:px-8 py-3.5 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Marque Clinique */}
         <div className="flex items-center gap-3">
@@ -37,17 +37,15 @@ export function Header({ user }: HeaderProps) {
             <img 
               src="/logo.jpg" 
               alt="Logo Clinique" 
-              className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-lime-500/20 border border-lime-500/30 group-hover:scale-105 transition-transform"
+              className="w-10 h-10 rounded-2xl object-cover shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
             />
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">Gestion Clinique</h1>
-                <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-lime-400/10 text-lime-400 border border-lime-400/30 px-2 py-0.5 rounded-full">
-                  <ShieldCheck className="w-3 h-3 text-lime-400" />
-                  Neon DB
-                </span>
+              <div className="flex items-center gap-1.5">
+                <h1 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">MEDI</h1>
+                <span className="w-2.5 h-2.5 rounded-full bg-lime-400 inline-block" />
+                <span className="ml-1 text-xs font-bold text-slate-500 hidden sm:inline">&bull; Clinique</span>
               </div>
-              <p className="text-xs text-slate-400 hidden sm:block">Application exclusive de la gérante</p>
+              <p className="text-[11px] text-slate-500 hidden sm:block font-medium">Espace Gérante Administrateur</p>
             </div>
           </Link>
         </div>
@@ -57,32 +55,29 @@ export function Header({ user }: HeaderProps) {
           {/* Raccourci Recettes */}
           <Link
             href="/recettes"
-            className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold px-3 py-2 rounded-xl border border-slate-700 transition-all flex items-center gap-1.5"
+            className="bg-slate-100 hover:bg-slate-200/80 text-slate-800 text-xs font-bold px-4 py-2 rounded-full border border-slate-200/80 transition-all flex items-center gap-1.5"
           >
-            <Coins className="w-4 h-4 text-lime-400" />
+            <Coins className="w-4 h-4 text-slate-700" />
             <span className="hidden md:inline">Recettes &amp; Historique</span>
           </Link>
 
           {/* Raccourci Nouvelle Prestation */}
           <Link
             href="/nouvelle-prestation"
-            className="bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold text-xs px-3 py-2 rounded-xl shadow-md shadow-lime-500/20 transition-all flex items-center gap-1.5 active:scale-95"
+            className="bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md transition-all flex items-center gap-1.5 active:scale-95"
           >
-            <PlusCircle className="w-4 h-4 text-slate-950" />
+            <PlusCircle className="w-4 h-4 text-lime-400" />
             <span className="hidden sm:inline">Prestation</span>
           </Link>
 
-          <div className="flex items-center gap-2 sm:gap-3 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-xl">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-lime-400 to-emerald-500 flex items-center justify-center text-slate-950 font-bold text-xs shadow-md">
+          <div className="flex items-center gap-2 sm:gap-2.5 bg-slate-100 border border-slate-200/80 px-3 py-1 rounded-full">
+            <div className="w-7 h-7 sm:w-7 sm:h-7 rounded-full bg-slate-950 text-white flex items-center justify-center font-bold text-xs shadow-sm">
               {user?.nom ? user.nom.substring(0, 2).toUpperCase() : 'GC'}
             </div>
             <div className="text-left text-xs hidden lg:block">
-              <div className="font-semibold text-slate-200 flex items-center gap-1">
-                <UserCheck className="w-3 h-3 text-lime-400" />
+              <div className="font-bold text-slate-900 flex items-center gap-1">
+                <UserCheck className="w-3 h-3 text-slate-700" />
                 <span>{user?.nom || 'Gérante'}</span>
-              </div>
-              <div className="text-slate-400 text-[11px] truncate max-w-[130px]">
-                {user?.email || 'Administration'}
               </div>
             </div>
           </div>
@@ -92,10 +87,10 @@ export function Header({ user }: HeaderProps) {
             onClick={handleLogout}
             disabled={loggingOut}
             title="Se déconnecter"
-            className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-800 hover:bg-red-500/10 border border-slate-700 hover:border-red-500/30 text-slate-300 hover:text-red-400 transition-all text-xs font-semibold flex items-center gap-2 disabled:opacity-50 cursor-pointer"
+            className="p-2 sm:px-3 sm:py-2 rounded-full bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200/80 transition-all text-xs font-bold flex items-center gap-1.5 cursor-pointer"
           >
             {loggingOut ? (
-              <Loader2 className="w-4 h-4 animate-spin text-red-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-red-500" />
             ) : (
               <LogOut className="w-4 h-4" />
             )}

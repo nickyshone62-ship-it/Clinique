@@ -83,7 +83,7 @@ export default function RapportsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-lime-400 selection:text-slate-950 p-4 sm:p-8 print:p-0 print:bg-white print:text-black">
+    <div className="min-h-screen bg-[#f5f6f2] text-slate-900 font-sans selection:bg-lime-400 selection:text-slate-950 p-4 sm:p-8 print:p-0 print:bg-white print:text-black">
       {/* Styles d'impression dédiés */}
       <style jsx global>{`
         @media print {
@@ -108,40 +108,40 @@ export default function RapportsPage() {
 
       {/* Barre d'outils et de contrôle (Masquée à l'impression) */}
       <div className="max-w-4xl mx-auto space-y-6 no-print">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white border border-slate-200/80 p-4 sm:p-6 rounded-[32px] shadow-sm">
           <Link
             href="/recettes"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-lime-400 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-slate-950 transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 text-slate-900" />
             <span>Retour aux Recettes &amp; Historique</span>
           </Link>
 
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={handlePrint}
-              className="bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-bold py-2 px-4 rounded-xl text-xs transition-all flex items-center gap-2 shadow-lg shadow-lime-500/20 cursor-pointer"
+              className="bg-slate-950 hover:bg-slate-800 text-white font-bold py-2.5 px-5 rounded-full text-xs transition-all flex items-center gap-2 shadow-md cursor-pointer"
             >
-              <Printer className="w-4 h-4 text-slate-950" />
+              <Printer className="w-4 h-4 text-lime-400" />
               <span>Imprimer le Rapport (PDF)</span>
             </button>
           </div>
         </div>
 
         {/* Sélection des filtres du rapport */}
-        <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-4">
-          <div className="flex items-center gap-2 text-xs font-bold text-lime-400 uppercase tracking-wider">
-            <FileText className="w-4 h-4 text-lime-400" />
+        <div className="bg-white border border-slate-200/80 p-6 sm:p-8 rounded-[32px] shadow-sm space-y-4">
+          <div className="flex items-center gap-2 text-xs font-bold text-slate-800 uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-lime-400" />
             <span>Options d&apos;Édition du Rapport</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-400">Période du Rapport</label>
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Période du Rapport</label>
               <select
                 value={period}
                 onChange={(e) => setPeriod(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
+                className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl px-3 py-2.5 text-xs text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-slate-950"
               >
                 <option value="today">Aujourd&apos;hui</option>
                 <option value="week">Cette semaine</option>
@@ -152,33 +152,33 @@ export default function RapportsPage() {
 
             {period === 'custom' && (
               <>
-                <div className="space-y-1">
-                  <label className="text-xs font-semibold text-slate-400">Date Début</label>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700">Date Début</label>
                   <input
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
+                    className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl px-3 py-2.5 text-xs text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-slate-950"
                   />
                 </div>
-                <div className="space-y-1">
-                  <label className="text-xs font-semibold text-slate-400">Date Fin</label>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700">Date Fin</label>
                   <input
                     type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
+                    className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl px-3 py-2.5 text-xs text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-slate-950"
                   />
                 </div>
               </>
             )}
 
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-400">Catégorie Médicale</label>
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Catégorie Médicale</label>
               <select
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
+                className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl px-3 py-2.5 text-xs text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-slate-950"
               >
                 <option value="">Toutes les catégories</option>
                 {categories.map((c) => (
