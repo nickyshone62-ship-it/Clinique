@@ -37,12 +37,9 @@ export default async function Home() {
       {/* En-tête principal avec profil gérante et déconnexion */}
       <Header user={user} />
 
-      <div className="flex">
-        {/* Barre latérale de navigation */}
-        <Sidebar categoriesCount={categories.length} servicesCount={totalServices} />
-
-        {/* Contenu principal du Tableau de bord */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-8 max-w-7xl">
+      <div className="w-full">
+        {/* Contenu principal du Tableau de bord (Pleine largeur sans menu latéral) */}
+        <main className="p-4 sm:p-6 lg:p-8 space-y-8 max-w-7xl mx-auto">
           {/* Banner Hero Style Modèle Image */}
           <div className="bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-10 shadow-sm relative overflow-hidden">
             <div className="relative z-10 space-y-6">

@@ -51,23 +51,40 @@ export function Header({ user }: HeaderProps) {
 
         {/* Action Rapides & Profil & Bouton Déconnexion */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Raccourci Recettes */}
-          <Link
-            href="/recettes"
-            className="bg-slate-100 hover:bg-slate-200/80 text-slate-800 text-xs font-bold px-4 py-2 rounded-full border border-slate-200/80 transition-all flex items-center gap-1.5"
-          >
-            <Coins className="w-4 h-4 text-slate-700" />
-            <span className="hidden md:inline">Recettes &amp; Historique</span>
-          </Link>
+          {/* Onglets de navigation principale supérieure */}
+          <nav className="flex items-center gap-1 bg-slate-100 p-1 rounded-full border border-slate-200/80">
+            <Link
+              href="/"
+              className="px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-slate-950 hover:bg-white transition-all flex items-center gap-1.5"
+            >
+              <Activity className="w-3.5 h-3.5 text-slate-800" />
+              <span className="hidden md:inline">Accueil</span>
+            </Link>
 
-          {/* Raccourci Nouvelle Prestation */}
-          <Link
-            href="/nouvelle-prestation"
-            className="bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md transition-all flex items-center gap-1.5 active:scale-95"
-          >
-            <PlusCircle className="w-4 h-4 text-lime-400" />
-            <span className="hidden sm:inline">Prestation</span>
-          </Link>
+            <Link
+              href="/nouvelle-prestation"
+              className="px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-slate-950 hover:bg-white transition-all flex items-center gap-1.5"
+            >
+              <PlusCircle className="w-3.5 h-3.5 text-slate-800" />
+              <span>Prestation</span>
+            </Link>
+
+            <Link
+              href="/recettes"
+              className="px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-slate-950 hover:bg-white transition-all flex items-center gap-1.5"
+            >
+              <Coins className="w-3.5 h-3.5 text-slate-800" />
+              <span>Recettes</span>
+            </Link>
+
+            <Link
+              href="/rapports"
+              className="px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-slate-950 hover:bg-white transition-all flex items-center gap-1.5"
+            >
+              <FileText className="w-3.5 h-3.5 text-slate-800" />
+              <span>Rapports</span>
+            </Link>
+          </nav>
 
           <div className="flex items-center gap-2 sm:gap-2.5 bg-slate-100 border border-slate-200/80 px-3 py-1 rounded-full">
             <div className="w-7 h-7 sm:w-7 sm:h-7 rounded-full bg-slate-950 text-white flex items-center justify-center font-bold text-xs shadow-sm">
