@@ -250,23 +250,16 @@ export default function RapportsPage() {
                 <th className="p-3">Catégorie</th>
                 <th className="p-3 text-center">Nombre d&apos;actes</th>
                 <th className="p-3 text-right">Recette (FCFA)</th>
-                <th className="p-3 text-right">% du Total</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
-              {data?.byCategory?.map((c: any) => {
-                const pct = data.summary.totalFiltered > 0 
-                  ? Math.round((c.total / data.summary.totalFiltered) * 100) 
-                  : 0;
-                return (
-                  <tr key={c.id} className="hover:bg-slate-50">
-                    <td className="p-3 font-bold text-slate-900">{c.nom}</td>
-                    <td className="p-3 text-center font-semibold">{c.count}</td>
-                    <td className="p-3 text-right font-bold text-emerald-800 print-text-black">{c.total.toLocaleString('fr-FR')} FCFA</td>
-                    <td className="p-3 text-right font-medium">{pct}%</td>
-                  </tr>
-                );
-              })}
+              {data?.byCategory?.map((c: any) => (
+                <tr key={c.id} className="hover:bg-slate-50">
+                  <td className="p-3 font-bold text-slate-900">{c.nom}</td>
+                  <td className="p-3 text-center font-semibold">{c.count}</td>
+                  <td className="p-3 text-right font-bold text-emerald-800 print-text-black">{c.total.toLocaleString('fr-FR')} FCFA</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

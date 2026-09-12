@@ -326,30 +326,17 @@ export default function RecettesPage() {
                 <p className="text-xs font-medium text-slate-500 text-center py-6">Aucune recette sur cette période.</p>
               ) : (
                 <div className="space-y-4">
-                  {data?.byCategory?.map((cat: any) => {
-                    const percentage = data.summary.totalFiltered > 0 
-                      ? Math.round((cat.total / data.summary.totalFiltered) * 100) 
-                      : 0;
-
-                    return (
-                      <div key={cat.id} className="bg-slate-50/70 border border-slate-200/70 rounded-2xl p-4 space-y-2">
-                        <div className="flex justify-between items-center text-xs">
-                          <span className="font-extrabold text-slate-900 uppercase">{cat.nom}</span>
-                          <span className="font-black text-slate-950 bg-lime-400 px-2.5 py-0.5 rounded-full">{cat.total.toLocaleString('fr-FR')} FCFA</span>
-                        </div>
-                        <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                          <div
-                            className="bg-gradient-to-r from-lime-400 to-yellow-300 h-full rounded-full transition-all duration-500"
-                            style={{ width: `${percentage}%` }}
-                          />
-                        </div>
-                        <div className="flex justify-between text-[10px] text-slate-500 font-semibold pt-0.5">
-                          <span>{cat.count} prestation(s)</span>
-                          <span>{percentage}% du total</span>
-                        </div>
+                  {data?.byCategory?.map((cat: any) => (
+                    <div key={cat.id} className="bg-slate-50/70 border border-slate-200/70 rounded-2xl p-4 space-y-2">
+                      <div className="flex justify-between items-center text-xs">
+                        <span className="font-extrabold text-slate-900 uppercase">{cat.nom}</span>
+                        <span className="font-black text-slate-950 bg-lime-400 px-2.5 py-0.5 rounded-full">{cat.total.toLocaleString('fr-FR')} FCFA</span>
                       </div>
-                    );
-                  })}
+                      <div className="flex justify-between text-[11px] text-slate-500 font-semibold pt-1">
+                        <span>{cat.count} prestation(s) réalisée(s)</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
