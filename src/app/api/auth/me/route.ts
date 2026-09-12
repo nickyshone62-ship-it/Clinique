@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getSessionUser } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 /**
  * Route GET /api/auth/me
  * Retourne le profil public et non-sensible de la gérante actuellement connectée.

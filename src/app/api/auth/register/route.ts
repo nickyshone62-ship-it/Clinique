@@ -3,6 +3,9 @@ import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
 import { createSessionToken, COOKIE_NAME } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 /**
  * Route POST /api/auth/register
  * Permet la création sécurisée du premier compte gérante depuis l'interface web.
@@ -114,13 +117,22 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     const count = await prisma.user.count();
-    return NextResponse.json({
-      canRegister: count === 0,
-      hasManagerAccount: count > 0,
-    });
-  } catch (error) {
     return NextResponse.json(
-      { canRegister: false, hasManagerAccount: true },
+      {
+        canRegister: count === 0,
+        hasManagerAccount: count > 0,
+        count,
+      },
+      {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        },
+      }
+    );
+  } catch (error: any) {
+    console.error('Erreur lors de la vérification de l\'inscription :', error);
+    return NextResponse.json(
+      { canRegister: false, hasManagerAccount: true, error: error?.message || 'DB_ERROR' },
       { status: 500 }
     );
   }

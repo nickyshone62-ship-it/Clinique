@@ -25,9 +25,12 @@ export default function RegisterPage() {
   useEffect(() => {
     async function checkAccountStatus() {
       try {
-        const res = await fetch('/api/auth/register');
+        const res = await fetch('/api/auth/register', {
+          cache: 'no-store',
+          headers: { 'Pragma': 'no-cache' },
+        });
         const data = await res.json();
-        setCanRegister(data.canRegister);
+        setCanRegister(Boolean(data.canRegister));
       } catch {
         setCanRegister(true);
       } finally {
