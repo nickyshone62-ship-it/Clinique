@@ -6,36 +6,42 @@ import {
   FileBarChart, 
   Database, 
   Lock, 
-  CheckCircle2, 
-  Clock 
+  CheckCircle2,
+  FolderTree
 } from 'lucide-react';
 
-export function Sidebar() {
+interface SidebarProps {
+  categoriesCount?: number;
+  servicesCount?: number;
+}
+
+export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProps) {
   const menuSections = [
     {
-      title: "Menu Principal",
+      title: "Navigation Gérante",
       items: [
-        { name: "Tableau de bord", icon: LayoutDashboard, href: "#", active: true, badge: "Prêt" },
-        { name: "Prestations", icon: Stethoscope, href: "#", active: false, badge: "Étape future" },
-        { name: "Recettes & Historique", icon: Receipt, href: "#", active: false, badge: "Étape future" },
-        { name: "Rapports & Statistiques", icon: FileBarChart, href: "#", active: false, badge: "Étape future" },
+        { name: "Tableau de bord", icon: LayoutDashboard, href: "/", active: true, badge: "En direct" },
+        { name: "Catalogue Services", icon: FolderTree, href: "#services", active: false, badge: `${servicesCount} actes` },
+        { name: "Prestations (Saisie)", icon: Stethoscope, href: "#", active: false, badge: "Étape 4" },
+        { name: "Recettes & Historique", icon: Receipt, href: "#", active: false, badge: "Étape 4" },
+        { name: "Rapports Financiers", icon: FileBarChart, href: "#", active: false, badge: "Étape 4" },
       ]
     },
     {
-      title: "Infrastructure & Sécurité",
+      title: "Infrastructure Active",
       items: [
-        { name: "Base de données (Neon)", icon: Database, href: "#", active: false, badge: "Attente Étape 2" },
-        { name: "Authentification", icon: Lock, href: "#", active: false, badge: "Attente Étape 3" },
+        { name: "PostgreSQL Neon DB", icon: Database, href: "#", active: false, badge: "Connecté" },
+        { name: "Session HTTP-Only", icon: Lock, href: "#", active: false, badge: "Sécurisé" },
       ]
     }
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 text-slate-300 min-h-[calc(100vh-73px)] p-4 flex flex-col justify-between border-r border-slate-800 hidden md:flex">
+    <aside className="w-64 bg-slate-950 text-slate-300 min-h-[calc(100vh-65px)] p-4 flex flex-col justify-between border-r border-slate-800/80 hidden md:flex">
       <div className="space-y-6">
         {menuSections.map((section, idx) => (
           <div key={idx} className="space-y-2">
-            <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-3">
+            <h2 className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-3">
               {section.title}
             </h2>
             <nav className="space-y-1">
@@ -44,23 +50,23 @@ export function Sidebar() {
                 return (
                   <div
                     key={itemIdx}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-colors ${
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
                       item.active
-                        ? "bg-teal-600/20 text-teal-300 border border-teal-500/30"
-                        : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-200"
+                        ? "bg-teal-500/10 text-teal-300 border border-teal-500/30 font-semibold"
+                        : "text-slate-400 hover:bg-slate-900 hover:text-slate-200"
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <Icon className={`w-4 h-4 ${item.active ? "text-teal-400" : "text-slate-400"}`} />
+                      <Icon className={`w-4 h-4 ${item.active ? "text-teal-400" : "text-slate-500"}`} />
                       <span>{item.name}</span>
                     </div>
                     {item.badge && (
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full flex items-center gap-1 ${
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold ${
                         item.active 
                           ? "bg-teal-500/20 text-teal-300 border border-teal-500/30" 
-                          : "bg-slate-800 text-slate-400"
+                          : "bg-slate-900 text-slate-400 border border-slate-800"
                       }`}>
-                        {item.active ? <CheckCircle2 className="w-2.5 h-2.5" /> : <Clock className="w-2.5 h-2.5" />}
+                        {item.active && <CheckCircle2 className="w-2.5 h-2.5 text-teal-400" />}
                         {item.badge}
                       </span>
                     )}
@@ -72,10 +78,13 @@ export function Sidebar() {
         ))}
       </div>
 
-      <div className="p-3 bg-slate-800/60 rounded-xl border border-slate-700/50 text-xs space-y-1 text-slate-400">
-        <p className="font-semibold text-slate-200">Étape 1 terminée</p>
-        <p className="text-[11px] leading-tight text-slate-400">
-          Architecture prête pour la suite du projet.
+      <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800/80 text-xs space-y-1.5 text-slate-400">
+        <div className="flex items-center gap-2 text-teal-400 font-semibold">
+          <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
+          <span>PostgreSQL Neon prêt</span>
+        </div>
+        <p className="text-[11px] leading-relaxed text-slate-400">
+          {categoriesCount} Catégories &bull; {servicesCount} Services initialisés sans prix fixes.
         </p>
       </div>
     </aside>
