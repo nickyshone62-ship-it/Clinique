@@ -24,7 +24,7 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
 
   const menuSections = [
     {
-      title: "Navigation Gérante",
+      title: "Menu Principal",
       items: [
         { name: "Tableau de bord", icon: LayoutDashboard, href: "/", active: pathname === '/', badge: "En direct" },
         { name: "Nouvelle prestation", icon: PlusCircle, href: "/nouvelle-prestation", active: pathname === '/nouvelle-prestation', badge: "Saisie" },
@@ -34,7 +34,7 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
       ]
     },
     {
-      title: "Infrastructure Active",
+      title: "Système",
       items: [
         { name: "PostgreSQL Neon DB", icon: Database, href: "#", active: false, badge: "Connecté" },
         { name: "Session HTTP-Only", icon: Lock, href: "#", active: false, badge: "Sécurisé" },
@@ -88,10 +88,10 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
       <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800/80 text-xs space-y-1.5 text-slate-400">
         <div className="flex items-center gap-2 text-teal-400 font-semibold">
           <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
-          <span>PostgreSQL Neon prêt</span>
+          <span>Base Neon PostgreSQL</span>
         </div>
         <p className="text-[11px] leading-relaxed text-slate-400">
-          {categoriesCount} Catégories &bull; {servicesCount} Services initialisés sans prix fixes.
+          {categoriesCount} Catégories &bull; {servicesCount} Services configurés.
         </p>
       </div>
     </aside>
