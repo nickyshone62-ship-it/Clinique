@@ -198,7 +198,7 @@ export default function RapportsPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-900 pb-6 gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-3">
-              <img src="/logo.jpg" alt="Logo BK Clinique" className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-slate-300 print:border-black shadow-xs" />
+              <img src="/logo.jpg" alt="Logo BK Clinique" className="h-16 sm:h-20 w-auto max-w-[260px] object-contain bg-white p-1 rounded-2xl border border-slate-300 print:border-black shadow-xs" />
               <div>
                 <h1 className="text-2xl font-black tracking-tight text-slate-900">BK CLINIQUE</h1>
               </div>

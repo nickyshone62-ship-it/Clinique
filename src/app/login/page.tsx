@@ -52,8 +52,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-white border border-slate-200/80 rounded-[32px] shadow-sm p-6 sm:p-8 space-y-6 relative z-10">
         {/* En-tête de la clinique */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 rounded-3xl p-1 border border-slate-200 shadow-md mb-1 overflow-hidden bg-white">
-            <img src="/logo.jpg" alt="Logo BK Clinique" className="w-full h-full object-cover rounded-2xl" />
+          <div className="w-full max-w-[280px] h-24 sm:h-28 mx-auto rounded-3xl p-2 border border-slate-200 shadow-sm mb-1 overflow-hidden bg-white flex items-center justify-center">
+            <img src="/logo.jpg" alt="Logo BK Clinique" className="w-full h-full object-contain" />
           </div>
           <div>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-[11px] font-bold border border-slate-200/80 uppercase tracking-wider">
