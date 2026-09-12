@@ -83,39 +83,39 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Grille de métriques réelles - Cartes Blanches Modèle */}
+          {/* Grille de métriques d'exploitation médicale */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Catégories</span>
-                <div className="p-2.5 bg-slate-100 text-slate-900 rounded-2xl border border-slate-200/60">
-                  <FolderTree className="w-5 h-5 text-slate-800" />
-                </div>
-              </div>
-              <div className="text-4xl font-black text-slate-900">{categories.length}</div>
-              <p className="text-xs font-medium text-slate-500">Consultations, Échographies, Actes</p>
-            </div>
-
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Services Médicaux</span>
-                <div className="p-2.5 bg-lime-400/20 text-slate-900 rounded-2xl border border-lime-400/30">
-                  <Stethoscope className="w-5 h-5 text-slate-950" />
-                </div>
-              </div>
-              <div className="text-4xl font-black text-slate-900">{totalServices}</div>
-              <p className="text-xs font-medium text-slate-500">Actes configurés &amp; actifs</p>
-            </div>
-
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Fixation des Prix</span>
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Encaissements</span>
                 <div className="p-2.5 bg-slate-100 text-slate-900 rounded-2xl border border-slate-200/60">
                   <Coins className="w-5 h-5 text-slate-800" />
                 </div>
               </div>
-              <div className="text-xl font-extrabold text-slate-900">Variables (FCFA)</div>
-              <p className="text-xs font-medium text-slate-500">Montant saisi lors de chaque prestation</p>
+              <div className="text-xl font-extrabold text-slate-900">En direct (FCFA)</div>
+              <p className="text-xs font-medium text-slate-500">Montants réels saisis</p>
+            </div>
+
+            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Prestations</span>
+                <div className="p-2.5 bg-lime-400/20 text-slate-900 rounded-2xl border border-lime-400/30">
+                  <Stethoscope className="w-5 h-5 text-slate-950" />
+                </div>
+              </div>
+              <div className="text-xl font-extrabold text-slate-900">Saisie Instantanée</div>
+              <p className="text-xs font-medium text-slate-500">Consultations &amp; Actes</p>
+            </div>
+
+            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Impression A4</span>
+                <div className="p-2.5 bg-slate-100 text-slate-900 rounded-2xl border border-slate-200/60">
+                  <FolderTree className="w-5 h-5 text-slate-800" />
+                </div>
+              </div>
+              <div className="text-xl font-extrabold text-slate-900">5 Modèles PDF</div>
+              <p className="text-xs font-medium text-slate-500">Rapports d&apos;activité</p>
             </div>
 
             <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-2">
