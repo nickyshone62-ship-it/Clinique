@@ -284,8 +284,8 @@ export default function RapportsPage() {
               </div>
 
               <div className="text-left sm:text-right text-xs print:text-sm space-y-1 text-slate-700 font-medium">
-                <div>Gérante : <strong className="text-slate-900 font-bold">{userProfile?.nom || 'Sougue Epiphane'}</strong></div>
-                <div>E-mail : {userProfile?.email || 'nickyshone62@gmail.com'}</div>
+                <div>Gérante : <strong className="text-slate-900 font-bold">{userProfile?.nom || 'Gérante BK Clinique'}</strong></div>
+                <div>E-mail : {userProfile?.email || 'contact@bkclinique.com'}</div>
                 <div>Édité le : <strong>{new Date().toLocaleDateString('fr-FR')}</strong> à {new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Ouagadougou' })} (UTC+0)</div>
               </div>
             </div>
@@ -419,7 +419,7 @@ export default function RapportsPage() {
                 </div>
               </div>
               <div className="text-right text-xs print:text-sm text-emerald-100 font-medium space-y-1 bg-emerald-900/60 p-4 rounded-2xl border border-emerald-800">
-                <div>Gérante : <strong className="text-white font-bold">{userProfile?.nom || 'Sougue Epiphane'}</strong></div>
+                <div>Gérante : <strong className="text-white font-bold">{userProfile?.nom || 'Gérante BK Clinique'}</strong></div>
                 <div>Date : <strong>{new Date().toLocaleDateString('fr-FR')}</strong></div>
                 <div>Période : <strong className="text-lime-400">{getPeriodLabel()}</strong></div>
               </div>
@@ -519,7 +519,7 @@ export default function RapportsPage() {
               </div>
               <div className="text-right text-xs font-bold space-y-0.5 text-slate-800">
                 <div>PÉRIODE : <span className="bg-slate-950 text-white px-2 py-0.5 rounded text-[11px] uppercase">{getPeriodLabel()}</span></div>
-                <div>GÉRANTE : <strong>{userProfile?.nom || 'Sougue Epiphane'}</strong></div>
+                <div>GÉRANTE : <strong>{userProfile?.nom || 'Gérante BK Clinique'}</strong></div>
                 <div>DATE : {new Date().toLocaleDateString('fr-FR')}</div>
               </div>
             </div>
@@ -614,7 +614,7 @@ export default function RapportsPage() {
               <div className="flex justify-center items-center gap-4 text-xs font-bold text-slate-600 mt-2">
                 <span>Période : <strong className="text-slate-950 uppercase">{getPeriodLabel()}</strong></span>
                 <span>•</span>
-                <span>Gérante : <strong className="text-slate-950">{userProfile?.nom || 'Sougue Epiphane'}</strong></span>
+                <span>Gérante : <strong className="text-slate-950">{userProfile?.nom || 'Gérante BK Clinique'}</strong></span>
                 <span>•</span>
                 <span>Édition : <strong>{new Date().toLocaleDateString('fr-FR')}</strong></span>
               </div>
@@ -713,7 +713,7 @@ export default function RapportsPage() {
             <div className="grid grid-cols-2 gap-4 text-xs font-sans border-2 border-slate-950 p-4 rounded-xl bg-slate-50">
               <div>
                 <div><strong>ÉTABLISSEMENT :</strong> BK CLINIQUE</div>
-                <div><strong>GÉRANTE RESPONSABLE :</strong> {userProfile?.nom || 'Sougue Epiphane'}</div>
+                <div><strong>GÉRANTE RESPONSABLE :</strong> {userProfile?.nom || 'Gérante BK Clinique'}</div>
               </div>
               <div className="text-right">
                 <div><strong>DATE DE L&apos;ARRÊTÉ :</strong> {new Date().toLocaleDateString('fr-FR')}</div>
