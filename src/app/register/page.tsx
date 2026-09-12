@@ -30,7 +30,7 @@ export default function RegisterPage() {
           headers: { 'Pragma': 'no-cache' },
         });
         const data = await res.json();
-        setCanRegister(Boolean(data.canRegister));
+        setCanRegister(data.canRegister !== undefined ? Boolean(data.canRegister) : true);
       } catch {
         setCanRegister(true);
       } finally {

@@ -8,27 +8,14 @@ export const revalidate = 0;
 
 /**
  * Route POST /api/auth/register
- * Permet la création sécurisée du premier compte gérante depuis l'interface web.
- * Bloque automatiquement toute création ultérieure si un compte gérante existe déjà.
+ * Permet la création sécurisée d'un compte gérante depuis l'interface web.
  */
 export async function POST(request: Request) {
   try {
-    // 1. Vérifier si un compte existe déjà dans la table users
-    const existingCount = await prisma.user.count();
-    if (existingCount > 0) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Un compte gérante existe déjà. L\'inscription de nouveaux comptes est désactivée.',
-        },
-        { status: 403 }
-      );
-    }
-
     const body = await request.json().catch(() => ({}));
     const { nom, email, password, confirmPassword } = body;
 
-    // 2. Validation des champs
+    // 1. Validation des champs
     if (!nom || typeof nom !== 'string' || nom.trim().length < 2) {
       return NextResponse.json(
         { success: false, error: 'Le nom doit contenir au moins 2 caractères.' },
@@ -59,6 +46,18 @@ export async function POST(request: Request) {
     }
 
     const trimmedEmail = email.trim().toLowerCase();
+
+    // 2. Vérifier si un compte existe déjà avec cette adresse email
+    const existingUser = await prisma.user.findUnique({
+      where: { email: trimmedEmail },
+    });
+
+    if (existingUser) {
+      return NextResponse.json(
+        { success: false, error: 'Un compte avec cet e-mail existe déjà.' },
+        { status: 400 }
+      );
+    }
 
     // 3. Hashage sécurisé du mot de passe avec Bcrypt (Cost 10)
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -112,14 +111,14 @@ export async function POST(request: Request) {
 
 /**
  * Route GET /api/auth/register
- * Permet à l'application web de vérifier si le premier compte peut être créé ou non.
+ * Indique que l'inscription est déverrouillée et disponible.
  */
 export async function GET() {
   try {
     const count = await prisma.user.count();
     return NextResponse.json(
       {
-        canRegister: count === 0,
+        canRegister: true,
         hasManagerAccount: count > 0,
         count,
       },
@@ -130,10 +129,9 @@ export async function GET() {
       }
     );
   } catch (error: any) {
-    console.error('Erreur lors de la vérification de l\'inscription :', error);
     return NextResponse.json(
-      { canRegister: false, hasManagerAccount: true, error: error?.message || 'DB_ERROR' },
-      { status: 500 }
+      { canRegister: true, hasManagerAccount: false },
+      { status: 200 }
     );
   }
 }
