@@ -37,7 +37,7 @@ export function Header({ user }: HeaderProps) {
             <img 
               src="/logo.jpg" 
               alt="Logo BK Clinique" 
-              className="w-12 h-12 rounded-2xl object-contain bg-white p-1 shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl object-cover shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
             />
             <div>
               <div className="flex items-center gap-1.5">
