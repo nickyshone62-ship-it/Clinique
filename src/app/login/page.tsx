@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Mail, Lock, Eye, EyeOff, Activity, AlertCircle, Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
@@ -164,11 +165,12 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Pied de page du formulaire */}
-        <div className="pt-2 text-center border-t border-slate-800/60">
-          <p className="text-xs text-slate-500">
-            Plateforme sécurisée &bull; Accès strictement réservé
-          </p>
+        {/* Pied de page du formulaire avec lien vers /register */}
+        <div className="pt-3 text-center border-t border-slate-800/60 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-400">
+          <span>Plateforme sécurisée &bull; Accès gérante</span>
+          <Link href="/register" className="text-teal-400 hover:text-teal-300 font-medium transition-colors">
+            Créer le compte gérante
+          </Link>
         </div>
       </div>
     </div>

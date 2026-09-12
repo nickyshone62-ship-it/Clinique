@@ -47,8 +47,8 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // 1. Redirection gérante déjà connectée tentant de visiter /login -> Vers la page d'accueil (/)
-  if (pathname === '/login') {
+  // 1. Redirection gérante déjà connectée tentant de visiter /login ou /register -> Vers la page d'accueil (/)
+  if (pathname === '/login' || pathname === '/register') {
     if (isAuthenticated) {
       return NextResponse.redirect(new URL('/', request.url));
     }
