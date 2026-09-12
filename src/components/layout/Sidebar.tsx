@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, 
-  Stethoscope, 
   Receipt, 
   FileBarChart, 
   Database, 
@@ -29,9 +28,9 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
       items: [
         { name: "Tableau de bord", icon: LayoutDashboard, href: "/", active: pathname === '/', badge: "En direct" },
         { name: "Nouvelle prestation", icon: PlusCircle, href: "/nouvelle-prestation", active: pathname === '/nouvelle-prestation', badge: "Saisie" },
+        { name: "Recettes & Historique", icon: Receipt, href: "/recettes", active: pathname === '/recettes', badge: "FCFA" },
+        { name: "Rapports Financiers", icon: FileBarChart, href: "/rapports", active: pathname === '/rapports', badge: "Imprimable" },
         { name: "Catalogue Services", icon: FolderTree, href: "/#services", active: false, badge: `${servicesCount} actes` },
-        { name: "Recettes & Historique", icon: Receipt, href: "#", active: false, badge: "Actif" },
-        { name: "Rapports Financiers", icon: FileBarChart, href: "#", active: false, badge: "Actif" },
       ]
     },
     {
