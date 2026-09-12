@@ -36,8 +36,8 @@ export function Header({ user }: HeaderProps) {
           <Link href="/" className="flex items-center gap-3 group">
             <img 
               src="/logo.jpg" 
-              alt="Logo Clinique" 
-              className="w-10 h-10 rounded-2xl object-cover shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
+              alt="Logo BK Clinique" 
+              className="w-12 h-12 rounded-2xl object-contain bg-white p-1 shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
             />
             <div>
               <div className="flex items-center gap-1.5">
