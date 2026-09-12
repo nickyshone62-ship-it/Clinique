@@ -53,7 +53,8 @@ export async function verifySessionToken(token: string): Promise<UserSession | n
 }
 
 /**
- * Récupère les données de la session gérante depuis les cookies HTTP-Only de la requête.
+ * Récupère les données de la session gérante depuis les cookies HTTP-Only de la requête,
+ * et valide que le compte existe toujours physiquement dans la base de données.
  */
 export async function getSessionUser(): Promise<UserSession | null> {
   const cookieStore = await cookies();
@@ -63,7 +64,30 @@ export async function getSessionUser(): Promise<UserSession | null> {
     return null;
   }
 
-  return verifySessionToken(token);
+  const sessionUser = await verifySessionToken(token);
+  if (!sessionUser) {
+    return null;
+  }
+
+  // Double vérification serveur contre la base de données
+  try {
+    const userInDb = await prisma.user.findUnique({
+      where: { id: sessionUser.id },
+      select: { id: true, nom: true, email: true },
+    });
+
+    if (!userInDb) {
+      return null;
+    }
+
+    return {
+      id: userInDb.id,
+      nom: userInDb.nom,
+      email: userInDb.email,
+    };
+  } catch (error) {
+    return null;
+  }
 }
 
 /**
@@ -77,19 +101,5 @@ export async function requireUser(): Promise<UserSession> {
     redirect('/login');
   }
 
-  // Double vérification serveur contre la base de données
-  const userInDb = await prisma.user.findUnique({
-    where: { id: sessionUser.id },
-    select: { id: true, nom: true, email: true },
-  });
-
-  if (!userInDb) {
-    redirect('/login');
-  }
-
-  return {
-    id: userInDb.id,
-    nom: userInDb.nom,
-    email: userInDb.email,
-  };
+  return sessionUser;
 }
