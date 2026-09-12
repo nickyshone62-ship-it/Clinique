@@ -7,32 +7,39 @@ import { prisma } from '@/lib/prisma';
  */
 export async function GET() {
   try {
-    // Vérification de la présence de la variable d'environnement
     if (!process.env.DATABASE_URL) {
       return NextResponse.json(
         {
           success: false,
-          error: 'DATABASE_URL n\'est pas configurée dans .env',
+          error: "DATABASE_URL n'est pas configurée dans .env",
         },
         { status: 500 }
       );
     }
 
-    // Lecture simple des catégories existantes
-    // @ts-ignore - Prisma Client sera entièrement typé après npx prisma db pull
-    const categories = await prisma.category.findMany();
+    // Lecture simple des catégories et du nombre de services associés dans Neon
+    const categories = await prisma.category.findMany({
+      include: {
+        services: true,
+      },
+    });
 
     return NextResponse.json({
       success: true,
-      message: 'Connexion à Neon PostgreSQL réussie',
+      message: 'Connexion à Neon PostgreSQL réussie avec succès !',
       totalCategories: categories.length,
-      categories: categories.map((c: any) => c.nom),
+      categories: categories.map((c) => ({
+        id: c.id,
+        nom: c.nom,
+        nombreServices: c.services.length,
+        services: c.services.map((s) => s.nom),
+      })),
     });
   } catch (error: any) {
     return NextResponse.json(
       {
         success: false,
-        error: error?.message || 'Erreur lors de la connexion à la base de données Neon',
+        error: error?.message || 'Erreur de connexion à Neon',
       },
       { status: 500 }
     );

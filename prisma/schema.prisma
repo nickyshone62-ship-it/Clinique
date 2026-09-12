@@ -1,6 +1,3 @@
-// Prisma Schema pour l'Application de Gestion de Clinique
-// Étape 2 : Neon PostgreSQL - Structure relationnelle
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,22 +9,22 @@ datasource db {
 
 /// Table des utilisateurs (Préparation Étape 3 - Compte unique de la gérante)
 model User {
-  id         String   @id @default(uuid())
-  nom        String
-  email      String   @unique
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nom        String   @db.VarChar(150)
+  email      String   @unique @db.VarChar(255)
   motDePasse String   @map("mot_de_passe")
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("users")
 }
 
 /// Table des catégories de services (CONSULTATIONS, ÉCHOGRAPHIES, ACTES)
 model Category {
-  id        String    @id @default(uuid())
-  nom       String    @unique
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nom       String    @unique @db.VarChar(100)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
   services  Service[]
 
   @@map("categories")
@@ -35,28 +32,32 @@ model Category {
 
 /// Table des services médicaux et actes de la clinique
 model Service {
-  id           String        @id @default(uuid())
-  categoryId   String        @map("category_id")
-  nom          String
+  id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  categoryId   String        @map("category_id") @db.Uuid
+  nom          String        @db.VarChar(150)
   actif        Boolean       @default(true)
-  createdAt    DateTime      @default(now()) @map("created_at")
-  updatedAt    DateTime      @updatedAt @map("updated_at")
-  category     Category      @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime      @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  category     Category      @relation(fields: [categoryId], references: [id], map: "fk_services_category")
   transactions Transaction[]
 
+  @@unique([categoryId, nom], map: "uq_services_category_nom")
+  @@index([categoryId], map: "idx_services_category_id")
   @@map("services")
 }
 
 /// Table des transactions (prestations enregistrées avec montant réel saisi)
 model Transaction {
-  id              String   @id @default(uuid())
-  serviceId       String   @map("service_id")
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  serviceId       String   @map("service_id") @db.Uuid
   montant         Decimal  @db.Decimal(12, 2)
-  datePrestation  DateTime @default(now()) @map("date_prestation")
-  heurePrestation DateTime @default(now()) @map("heure_prestation")
-  createdAt       DateTime @default(now()) @map("created_at")
-  updatedAt       DateTime @updatedAt @map("updated_at")
-  service         Service  @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  datePrestation  DateTime @default(dbgenerated("CURRENT_DATE")) @map("date_prestation") @db.Date
+  heurePrestation DateTime @default(dbgenerated("CURRENT_TIME")) @map("heure_prestation") @db.Time(6)
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  service         Service  @relation(fields: [serviceId], references: [id], map: "fk_transactions_service")
 
+  @@index([datePrestation], map: "idx_transactions_date")
+  @@index([serviceId], map: "idx_transactions_service_id")
   @@map("transactions")
 }
