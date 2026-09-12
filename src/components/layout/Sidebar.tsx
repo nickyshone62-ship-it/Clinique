@@ -30,7 +30,6 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
         { name: "Nouvelle prestation", icon: PlusCircle, href: "/nouvelle-prestation", active: pathname === '/nouvelle-prestation', badge: "Saisie" },
         { name: "Recettes & Historique", icon: Receipt, href: "/recettes", active: pathname === '/recettes', badge: "FCFA" },
         { name: "Rapports Financiers", icon: FileBarChart, href: "/rapports", active: pathname === '/rapports', badge: "Imprimable" },
-        { name: "Catalogue Services", icon: FolderTree, href: "/#services", active: false, badge: `${servicesCount} actes` },
       ]
     }
   ];

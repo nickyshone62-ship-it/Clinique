@@ -130,63 +130,46 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Explorer du Catalogue de Catégories et Services - Carte Blanche */}
-          <div id="services" className="bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
-              <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-                  <FolderTree className="w-5 h-5 text-slate-800" />
-                  <span>Catalogue des Catégories &amp; Services</span>
-                </h2>
-                <p className="text-xs font-medium text-slate-500 mt-1">
-                  Catalogue complet des actes et services médicaux de la clinique.
-                </p>
-              </div>
-
-              <div className="bg-slate-100 border border-slate-200/80 px-4 py-1.5 rounded-full text-xs text-slate-800 font-bold self-start sm:self-auto">
-                Devise : <span className="text-slate-950 font-black">FCFA</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {categories.map((cat) => (
-                <div 
-                  key={cat.id} 
-                  className="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-5 space-y-4 hover:border-slate-300 transition-all flex flex-col justify-between"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-xs font-black text-slate-900 tracking-wider uppercase flex items-center gap-2">
-                        <Tag className="w-4 h-4 text-slate-700" />
-                        <span>{cat.nom}</span>
-                      </h3>
-                      <span className="text-[11px] font-bold bg-white text-slate-900 border border-slate-200 px-3 py-1 rounded-full shadow-xs">
-                        {cat.services.length} services
-                      </span>
-                    </div>
-
-                    <ul className="space-y-2 pt-1">
-                      {cat.services.map((s) => (
-                        <li 
-                          key={s.id}
-                          className="flex items-center justify-between text-xs bg-white border border-slate-200/70 rounded-xl px-3.5 py-2.5 text-slate-800 font-semibold shadow-xs"
-                        >
-                          <span>{s.nom}</span>
-                          <span className="text-[10px] text-slate-950 font-bold bg-lime-400 px-2.5 py-0.5 rounded-full">
-                            Actif
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="pt-3 text-[11px] text-slate-500 font-medium border-t border-slate-200/60 flex items-center gap-1.5">
-                    <Coins className="w-3.5 h-3.5 text-slate-700" />
-                    <span>Saisie du montant lors de la prestation</span>
-                  </div>
+          {/* Actions Rapides Tableau de bord */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            <a href="/nouvelle-prestation" className="bg-slate-950 text-white rounded-3xl p-6 shadow-sm hover:shadow-md hover:bg-slate-900 transition-all space-y-3 block group">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-lime-400">Saisie Rapide</span>
+                <div className="p-2.5 bg-lime-400 text-slate-950 rounded-2xl">
+                  <Stethoscope className="w-5 h-5" />
                 </div>
-              ))}
-            </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-black text-white group-hover:text-lime-400 transition-colors">Nouvelle Prestation &rarr;</h3>
+                <p className="text-xs text-slate-400 font-medium mt-1">Enregistrer un acte médical et émettre un reçu</p>
+              </div>
+            </a>
+
+            <a href="/recettes" className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition-all space-y-3 block group">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Historique &amp; Caisse</span>
+                <div className="p-2.5 bg-slate-100 text-slate-900 rounded-2xl border border-slate-200/60">
+                  <Coins className="w-5 h-5 text-slate-800" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-black text-slate-900 group-hover:text-slate-950 transition-colors">Recettes &amp; Historique &rarr;</h3>
+                <p className="text-xs text-slate-500 font-medium mt-1">Consulter tous les encaissements en FCFA</p>
+              </div>
+            </a>
+
+            <a href="/rapports" className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition-all space-y-3 block group">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Édition A4</span>
+                <div className="p-2.5 bg-slate-100 text-slate-900 rounded-2xl border border-slate-200/60">
+                  <FolderTree className="w-5 h-5 text-slate-800" />
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-black text-slate-900 group-hover:text-slate-950 transition-colors">Rapports Financiers &rarr;</h3>
+                <p className="text-xs text-slate-500 font-medium mt-1">Générer et imprimer les rapports d&apos;activité</p>
+              </div>
+            </a>
           </div>
         </main>
       </div>
