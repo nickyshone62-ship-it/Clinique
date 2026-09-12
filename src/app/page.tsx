@@ -32,38 +32,6 @@ export default async function Home() {
 
   const totalServices = categories.reduce((acc, cat) => acc + cat.services.length, 0);
 
-  const steps = [
-    {
-      step: "Étape 1",
-      title: "Initialisation & Socle Next.js",
-      description: "Architecture Next.js (App Router), TypeScript strict, Tailwind CSS v4 & ESLint.",
-      status: "Terminée",
-      completed: true,
-    },
-    {
-      step: "Étape 2",
-      title: "Base Neon PostgreSQL & ORM Prisma",
-      description: "Modélisation relationnelle des tables (users, categories, services, transactions).",
-      status: "Terminée",
-      completed: true,
-    },
-    {
-      step: "Étape 3",
-      title: "Authentification Gérante & Sessions",
-      description: "Compte unique, hash Bcrypt, sessions JWT sécurisées et cookies HTTP-Only.",
-      status: "Terminée",
-      completed: true,
-    },
-    {
-      step: "Étape 4",
-      title: "Saisie des Prestations & Suivi des Recettes",
-      description: "Enregistrement des montants réels en FCFA, dates/heures UTC+0 et historique.",
-      status: "Prochaine Étape",
-      completed: false,
-      current: true,
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-[#f5f6f2] text-slate-900 font-sans selection:bg-lime-400 selection:text-slate-950">
       {/* En-tête principal avec profil gérante et déconnexion */}
@@ -81,7 +49,7 @@ export default async function Home() {
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-slate-100 text-slate-800 border border-slate-200/80 px-3.5 py-1.5 rounded-full">
                   <span className="w-2 h-2 rounded-full bg-lime-400" />
-                  Espace Gérante Active
+                  BK Clinique &bull; Espace Gérante Active
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
                   &bull; Neon PostgreSQL SSL
@@ -90,10 +58,10 @@ export default async function Home() {
 
               <div className="space-y-3 max-w-3xl">
                 <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                  Gestion médicale &amp; recettes de votre clinique<span className="w-3 h-3 rounded-full bg-lime-400 inline-block ml-1" />
+                  BK Clinique &bull; Suivi des Recettes &amp; Prestations<span className="w-3 h-3 rounded-full bg-lime-400 inline-block ml-1" />
                 </h1>
                 <p className="text-sm sm:text-base text-slate-500 font-medium leading-relaxed">
-                  Bienvenue <strong>{user.nom}</strong>. Suivez et enregistrez toutes les prestations médicales réalisées à la clinique avec horodatage UTC+0.
+                  Bienvenue <strong>{user.nom}</strong>. Enregistrez et consultez toutes les prestations médicales réalisées à la clinique BK Clinique avec horodatage UTC+0.
                 </p>
               </div>
 
@@ -215,62 +183,6 @@ export default async function Home() {
                   <div className="pt-3 text-[11px] text-slate-500 font-medium border-t border-slate-200/60 flex items-center gap-1.5">
                     <Coins className="w-3.5 h-3.5 text-slate-700" />
                     <span>Saisie du montant lors de la prestation</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Progression des étapes du Projet */}
-          <div className="bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-sm">
-            <div>
-              <h2 className="text-xl font-black text-slate-900 tracking-tight">Feuille de Route de la Clinique</h2>
-              <p className="text-xs font-medium text-slate-500 mt-1">Avancement des étapes de développement du projet.</p>
-            </div>
-
-            <div className="space-y-4">
-              {steps.map((s, idx) => (
-                <div
-                  key={idx}
-                  className={`p-4 sm:p-5 rounded-2xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
-                    s.completed
-                      ? "bg-slate-50/70 border-slate-200/80"
-                      : s.current
-                      ? "bg-white border-lime-400 shadow-sm"
-                      : "bg-slate-50/30 border-slate-100 opacity-60"
-                  }`}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={`mt-0.5 w-7 h-7 rounded-full flex items-center justify-center text-xs font-black ${
-                      s.completed
-                        ? "bg-slate-950 text-white"
-                        : s.current
-                        ? "bg-lime-400 text-slate-950 animate-pulse"
-                        : "bg-slate-200 text-slate-600"
-                    }`}>
-                      {idx + 1}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{s.step}</span>
-                        <h4 className="text-sm font-bold text-slate-900">{s.title}</h4>
-                      </div>
-                      <p className="text-xs font-medium text-slate-500 mt-1">{s.description}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-xs font-medium self-end sm:self-center">
-                    <span className={`px-3.5 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 ${
-                      s.completed
-                        ? "bg-slate-200 text-slate-800"
-                        : s.current
-                        ? "bg-lime-400 text-slate-950"
-                        : "bg-slate-100 text-slate-400"
-                    }`}>
-                      {s.completed && <CheckCircle2 className="w-3.5 h-3.5 text-slate-950" />}
-                      {s.status}
-                    </span>
-                    {s.current && <ArrowRight className="w-4 h-4 text-slate-900 animate-pulse" />}
                   </div>
                 </div>
               ))}

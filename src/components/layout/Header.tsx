@@ -41,9 +41,8 @@ export function Header({ user }: HeaderProps) {
             />
             <div>
               <div className="flex items-center gap-1.5">
-                <h1 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">MEDI</h1>
+                <h1 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">BK Clinique</h1>
                 <span className="w-2.5 h-2.5 rounded-full bg-lime-400 inline-block" />
-                <span className="ml-1 text-xs font-bold text-slate-500 hidden sm:inline">&bull; Clinique</span>
               </div>
               <p className="text-[11px] text-slate-500 hidden sm:block font-medium">Espace Gérante Administrateur</p>
             </div>

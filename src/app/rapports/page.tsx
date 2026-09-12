@@ -200,7 +200,7 @@ export default function RapportsPage() {
             <div className="flex items-center gap-3">
               <img src="/logo.jpg" alt="Logo Clinique" className="w-12 h-12 rounded-xl object-cover border border-slate-300 print:border-black" />
               <div>
-                <h1 className="text-2xl font-black tracking-tight text-slate-900">CLINIQUE MÉDICALE</h1>
+                <h1 className="text-2xl font-black tracking-tight text-slate-900">BK CLINIQUE</h1>
               </div>
             </div>
             <p className="text-xs text-slate-600 uppercase font-semibold tracking-widest">

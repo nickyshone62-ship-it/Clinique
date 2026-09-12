@@ -106,7 +106,7 @@ export default function RegisterPage() {
           <div>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-[11px] font-bold border border-slate-200/80 uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-lime-400" />
-              MEDI &bull; Clinique
+              BK Clinique
             </span>
             <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-2">
               Créer le compte Gérante
