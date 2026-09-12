@@ -84,12 +84,19 @@ export default function RapportsPage() {
 
   return (
     <div className="min-h-screen bg-[#f5f6f2] text-slate-900 font-sans selection:bg-lime-400 selection:text-slate-950 p-4 sm:p-8 print:p-0 print:bg-white print:text-black">
-      {/* Styles d'impression dédiés */}
+      {/* Styles d'impression optimisés 1 seule page A4 */}
       <style jsx global>{`
         @media print {
+          @page {
+            size: portrait;
+            margin: 8mm 10mm;
+          }
           body {
             background-color: white !important;
             color: black !important;
+            font-size: 10px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           .no-print {
             display: none !important;
@@ -102,6 +109,14 @@ export default function RapportsPage() {
           }
           .print-text-black {
             color: black !important;
+          }
+          table {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          tr {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
           }
         }
       `}</style>
@@ -123,7 +138,7 @@ export default function RapportsPage() {
               className="bg-slate-950 hover:bg-slate-800 text-white font-bold py-2.5 px-5 rounded-full text-xs transition-all flex items-center gap-2 shadow-md cursor-pointer"
             >
               <Printer className="w-4 h-4 text-lime-400" />
-              <span>Imprimer le Rapport (PDF)</span>
+              <span>Imprimer le Rapport (PDF 1 Page)</span>
             </button>
           </div>
         </div>
@@ -192,72 +207,73 @@ export default function RapportsPage() {
         </div>
       </div>
 
-      {/* RAPPORT OFFICIEL (Visible à l'écran et optimisé pour l'impression) */}
-      <div className="max-w-4xl mx-auto bg-white text-slate-900 rounded-3xl p-8 sm:p-12 shadow-2xl mt-6 print:mt-0 print:shadow-none print:rounded-none space-y-8 border border-slate-200 print-border">
+      {/* RAPPORT OFFICIEL (Visible à l'écran et optimisé pour l'impression 1 PAGE A4) */}
+      <div className="max-w-4xl mx-auto bg-white text-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl mt-6 print:mt-0 print:p-0 print:shadow-none print:rounded-none space-y-5 print:space-y-3.5 border border-slate-200 print:border-none">
         {/* En-tête officiel de la clinique */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-900 pb-6 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-900 pb-4 print:pb-3 gap-3">
           <div className="space-y-1">
-            <div className="flex items-center gap-4">
-              <img src="/logo.jpg" alt="Logo BK Clinique" className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-contain bg-white p-1 border-2 border-slate-300 print:border-black shadow-xs" />
+            <div className="flex items-center gap-3">
+              <img src="/logo.jpg" alt="Logo BK Clinique" className="w-16 h-16 sm:w-20 sm:h-20 print:w-14 print:h-14 rounded-2xl object-contain bg-white p-1 border border-slate-300 print:border-black shadow-xs" />
               <div>
-                <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-950 uppercase">BK CLINIQUE</h1>
-                <p className="text-xs text-slate-700 uppercase font-extrabold tracking-widest mt-1">
+                <h1 className="text-2xl sm:text-3xl print:text-xl font-black tracking-tight text-slate-950 uppercase">BK CLINIQUE</h1>
+                <p className="text-[11px] print:text-[10px] text-slate-700 uppercase font-extrabold tracking-widest mt-0.5">
                   Rapport d&apos;Activité et de Recettes Financières
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="text-left sm:text-right text-xs space-y-1 text-slate-700">
+          <div className="text-left sm:text-right text-xs print:text-[10px] space-y-0.5 text-slate-700">
             <div>Gérante : <strong className="text-slate-900">{userProfile?.nom || 'Sougue Epiphane'}</strong></div>
             <div>E-mail : {userProfile?.email || 'nickyshone62@gmail.com'}</div>
             <div>Édité le : <strong>{new Date().toLocaleDateString('fr-FR')}</strong> à {new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Ouagadougou' })} (UTC+0)</div>
           </div>
         </div>
 
-        {/* Détails de la période */}
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs print-bg-gray">
-          <div>
-            <span className="text-slate-500 font-medium">Période du Rapport : </span>
-            <strong className="text-slate-900 font-bold">{getPeriodLabel()}</strong>
+        {/* Détails de la période & Total Général */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 print:gap-2">
+          <div className="sm:col-span-1 bg-slate-50 border border-slate-200 rounded-2xl p-3 print:p-2 text-xs print:text-[10px] print-bg-gray flex flex-col justify-center">
+            <div>
+              <span className="text-slate-500 font-medium">Période : </span>
+              <strong className="text-slate-900 font-bold">{getPeriodLabel()}</strong>
+            </div>
+            <div className="mt-1">
+              <span className="text-slate-500 font-medium">Nb d&apos;actes : </span>
+              <strong className="text-emerald-800 font-bold print-text-black">{data?.summary?.countFiltered || 0} prestations</strong>
+            </div>
           </div>
-          <div>
-            <span className="text-slate-500 font-medium">Nombre de Prestations : </span>
-            <strong className="text-emerald-800 font-bold print-text-black">{data?.summary?.countFiltered || 0} actes</strong>
-          </div>
-        </div>
 
-        {/* Total Général des Recettes */}
-        <div className="bg-slate-900 text-white rounded-2xl p-6 flex items-center justify-between print:bg-slate-100 print:text-black print-border">
-          <div>
-            <span className="text-xs uppercase tracking-wider text-slate-300 print:text-slate-700 font-semibold">Total Général des Recettes</span>
-            <h2 className="text-3xl font-black text-lime-400 print-text-black mt-1">
-              {data?.summary?.totalFiltered?.toLocaleString('fr-FR') || 0} FCFA
-            </h2>
+          <div className="sm:col-span-2 bg-slate-900 text-white rounded-2xl p-3.5 print:p-2.5 px-5 print:px-4 flex items-center justify-between print:bg-slate-100 print:text-black print-border">
+            <div>
+              <span className="text-[10px] uppercase tracking-wider text-slate-300 print:text-slate-700 font-bold">Total Général des Recettes</span>
+              <h2 className="text-2xl print:text-xl font-black text-lime-400 print-text-black">
+                {data?.summary?.totalFiltered?.toLocaleString('fr-FR') || 0} FCFA
+              </h2>
+            </div>
+            <Coins className="w-8 h-8 print:w-6 print:h-6 text-lime-400 print-text-black opacity-80" />
           </div>
-          <Coins className="w-10 h-10 text-lime-400 print-text-black opacity-80" />
         </div>
 
         {/* Ventilation par Catégorie */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2">
+        <div className="space-y-2 print:space-y-1">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1">
             1. Synthèse par Catégorie
           </h3>
 
-          <table className="w-full text-xs text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
-            <thead className="bg-slate-100 uppercase text-slate-700 text-[11px] font-bold border-b border-slate-200">
+          <table className="w-full text-xs print:text-[10px] text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
+            <thead className="bg-slate-100 uppercase text-slate-700 text-[10px] font-bold border-b border-slate-200">
               <tr>
-                <th className="p-3">Catégorie</th>
-                <th className="p-3 text-center">Nombre d&apos;actes</th>
-                <th className="p-3 text-right">Recette (FCFA)</th>
+                <th className="p-2 print:py-1 print:px-2">Catégorie</th>
+                <th className="p-2 print:py-1 print:px-2 text-center">Nombre d&apos;actes</th>
+                <th className="p-2 print:py-1 print:px-2 text-right">Recette (FCFA)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
               {data?.byCategory?.map((c: any) => (
                 <tr key={c.id} className="hover:bg-slate-50">
-                  <td className="p-3 font-bold text-slate-900">{c.nom}</td>
-                  <td className="p-3 text-center font-semibold">{c.count}</td>
-                  <td className="p-3 text-right font-bold text-emerald-800 print-text-black">{c.total.toLocaleString('fr-FR')} FCFA</td>
+                  <td className="p-2 print:py-1 print:px-2 font-bold text-slate-900">{c.nom}</td>
+                  <td className="p-2 print:py-1 print:px-2 text-center font-semibold">{c.count}</td>
+                  <td className="p-2 print:py-1 print:px-2 text-right font-bold text-emerald-800 print-text-black">{c.total.toLocaleString('fr-FR')} FCFA</td>
                 </tr>
               ))}
             </tbody>
@@ -265,66 +281,68 @@ export default function RapportsPage() {
         </div>
 
         {/* Ventilation par Service */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2">
+        <div className="space-y-2 print:space-y-1">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1">
             2. Détails des Recettes par Service
           </h3>
 
-          <table className="w-full text-xs text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
-            <thead className="bg-slate-100 uppercase text-slate-700 text-[11px] font-bold border-b border-slate-200">
+          <table className="w-full text-xs print:text-[10px] text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
+            <thead className="bg-slate-100 uppercase text-slate-700 text-[10px] font-bold border-b border-slate-200">
               <tr>
-                <th className="p-3">Service</th>
-                <th className="p-3">Catégorie</th>
-                <th className="p-3 text-center">Actes</th>
-                <th className="p-3 text-right">Total FCFA</th>
+                <th className="p-2 print:py-1 print:px-2">Service</th>
+                <th className="p-2 print:py-1 print:px-2">Catégorie</th>
+                <th className="p-2 print:py-1 print:px-2 text-center">Actes</th>
+                <th className="p-2 print:py-1 print:px-2 text-right">Total FCFA</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
               {data?.byService?.map((s: any) => (
                 <tr key={s.id} className="hover:bg-slate-50">
-                  <td className="p-3 font-bold text-slate-900">{s.nom}</td>
-                  <td className="p-3 font-medium text-slate-600">{s.categorieNom}</td>
-                  <td className="p-3 text-center font-semibold">{s.count}</td>
-                  <td className="p-3 text-right font-bold text-slate-900">{s.total.toLocaleString('fr-FR')} FCFA</td>
+                  <td className="p-2 print:py-1 print:px-2 font-bold text-slate-900">{s.nom}</td>
+                  <td className="p-2 print:py-1 print:px-2 font-medium text-slate-600">{s.categorieNom}</td>
+                  <td className="p-2 print:py-1 print:px-2 text-center font-semibold">{s.count}</td>
+                  <td className="p-2 print:py-1 print:px-2 text-right font-bold text-slate-900">{s.total.toLocaleString('fr-FR')} FCFA</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* Liste chronologique des Prestations */}
-        <div className="space-y-3">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2">
-            3. Registre des Prestations Enregistrées
-          </h3>
+        {/* Liste chronologique des Prestations (Limitée à 8 items max sur le rapport imprimable pour garantie 1 page A4) */}
+        {data?.transactions?.length > 0 && (
+          <div className="space-y-2 print:space-y-1">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1">
+              3. Registre des Prestations Récentes
+            </h3>
 
-          <table className="w-full text-xs text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
-            <thead className="bg-slate-100 uppercase text-slate-700 text-[11px] font-bold border-b border-slate-200">
-              <tr>
-                <th className="p-2.5">Date &amp; Heure</th>
-                <th className="p-2.5">Catégorie</th>
-                <th className="p-2.5">Service</th>
-                <th className="p-2.5 text-right">Montant FCFA</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200">
-              {data?.transactions?.map((t: any) => (
-                <tr key={t.id} className="hover:bg-slate-50">
-                  <td className="p-2.5 text-slate-600 font-medium">
-                    {new Date(t.datePrestation).toLocaleDateString('fr-FR')} {new Date(t.heurePrestation).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
-                  </td>
-                  <td className="p-2.5 font-semibold text-slate-700">{t.service.categorie}</td>
-                  <td className="p-2.5 font-bold text-slate-900">{t.service.nom}</td>
-                  <td className="p-2.5 text-right font-bold text-slate-900">{t.montant.toLocaleString('fr-FR')} FCFA</td>
+            <table className="w-full text-xs print:text-[10px] text-left text-slate-800 border border-slate-200 rounded-xl overflow-hidden">
+              <thead className="bg-slate-100 uppercase text-slate-700 text-[10px] font-bold border-b border-slate-200">
+                <tr>
+                  <th className="p-2 print:py-1 print:px-2">Date &amp; Heure</th>
+                  <th className="p-2 print:py-1 print:px-2">Catégorie</th>
+                  <th className="p-2 print:py-1 print:px-2">Service</th>
+                  <th className="p-2 print:py-1 print:px-2 text-right">Montant FCFA</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {data?.transactions?.slice(0, 8).map((t: any) => (
+                  <tr key={t.id} className="hover:bg-slate-50">
+                    <td className="p-2 print:py-1 print:px-2 text-slate-600 font-medium">
+                      {new Date(t.datePrestation).toLocaleDateString('fr-FR')} {new Date(t.heurePrestation).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
+                    </td>
+                    <td className="p-2 print:py-1 print:px-2 font-semibold text-slate-700">{t.service.categorie}</td>
+                    <td className="p-2 print:py-1 print:px-2 font-bold text-slate-900">{t.service.nom}</td>
+                    <td className="p-2 print:py-1 print:px-2 text-right font-bold text-slate-900">{t.montant.toLocaleString('fr-FR')} FCFA</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {/* Signature et validation gérante */}
-        <div className="pt-8 flex justify-end items-end text-xs text-slate-700 border-t border-slate-200">
-          <div className="text-center space-y-12 pr-6">
+        <div className="pt-4 print:pt-2 flex justify-end items-end text-xs print:text-[10px] text-slate-700 border-t border-slate-200">
+          <div className="text-center space-y-6 print:space-y-4 pr-6">
             <p className="font-bold uppercase text-slate-900">Visa de la Gérante</p>
           </div>
         </div>
