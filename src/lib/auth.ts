@@ -1,0 +1,94 @@
+import { SignJWT, jwtVerify } from 'jose';
+import { cookies } from 'next/headers';
+import { prisma } from './prisma';
+
+export const COOKIE_NAME = 'clinique_session';
+const SECRET_KEY = new TextEncoder().encode(
+  process.env.JWT_SECRET || 'clinique_default_secret_key_change_in_production'
+);
+
+export interface UserSession {
+  id: string;
+  email: string;
+  nom: string;
+}
+
+/**
+ * Crée un token JWT de session chiffré et signé d'une durée de 24h.
+ */
+export async function createSessionToken(user: UserSession): Promise<string> {
+  return new SignJWT({
+    id: user.id,
+    email: user.email,
+    nom: user.nom,
+  })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('24h')
+    .sign(SECRET_KEY);
+}
+
+/**
+ * Vérifie la validité d'un token JWT de session et retourne le payload décodé.
+ */
+export async function verifySessionToken(token: string): Promise<UserSession | null> {
+  try {
+    const { payload } = await jwtVerify(token, SECRET_KEY, {
+      algorithms: ['HS256'],
+    });
+
+    if (!payload.id || !payload.email) {
+      return null;
+    }
+
+    return {
+      id: payload.id as string,
+      email: payload.email as string,
+      nom: (payload.nom as string) || '',
+    };
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
+ * Récupère les données de la session gérante depuis les cookies HTTP-Only de la requête.
+ */
+export async function getSessionUser(): Promise<UserSession | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(COOKIE_NAME)?.value;
+
+  if (!token) {
+    return null;
+  }
+
+  return verifySessionToken(token);
+}
+
+/**
+ * Fonction de garde serveur pour sécuriser les actions et composants serveurs.
+ * Vérifie également la présence effective de l'utilisateur dans la base Neon.
+ */
+export async function requireUser(): Promise<UserSession> {
+  const sessionUser = await getSessionUser();
+
+  if (!sessionUser) {
+    throw new Error('UNAUTHORIZED');
+  }
+
+  // Double vérification serveur contre la base de données
+  const userInDb = await prisma.user.findUnique({
+    where: { id: sessionUser.id },
+    select: { id: true, nom: true, email: true },
+  });
+
+  if (!userInDb) {
+    throw new Error('UNAUTHORIZED');
+  }
+
+  return {
+    id: userInDb.id,
+    nom: userInDb.nom,
+    email: userInDb.email,
+  };
+}
