@@ -83,7 +83,7 @@ export default function RapportsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-teal-500 selection:text-white p-4 sm:p-8 print:p-0 print:bg-white print:text-black">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-lime-400 selection:text-slate-950 p-4 sm:p-8 print:p-0 print:bg-white print:text-black">
       {/* Styles d'impression dédiés */}
       <style jsx global>{`
         @media print {
@@ -223,7 +223,7 @@ export default function RapportsPage() {
           </div>
           <div>
             <span className="text-slate-500 font-medium">Nombre de Prestations : </span>
-            <strong className="text-teal-800 font-bold print-text-black">{data?.summary?.countFiltered || 0} actes</strong>
+            <strong className="text-emerald-800 font-bold print-text-black">{data?.summary?.countFiltered || 0} actes</strong>
           </div>
         </div>
 
@@ -231,11 +231,11 @@ export default function RapportsPage() {
         <div className="bg-slate-900 text-white rounded-2xl p-6 flex items-center justify-between print:bg-slate-100 print:text-black print-border">
           <div>
             <span className="text-xs uppercase tracking-wider text-slate-300 print:text-slate-700 font-semibold">Total Général des Recettes</span>
-            <h2 className="text-3xl font-black text-amber-400 print-text-black mt-1">
+            <h2 className="text-3xl font-black text-lime-400 print-text-black mt-1">
               {data?.summary?.totalFiltered?.toLocaleString('fr-FR') || 0} FCFA
             </h2>
           </div>
-          <Coins className="w-10 h-10 text-teal-400 print-text-black opacity-80" />
+          <Coins className="w-10 h-10 text-lime-400 print-text-black opacity-80" />
         </div>
 
         {/* Ventilation par Catégorie */}
@@ -262,7 +262,7 @@ export default function RapportsPage() {
                   <tr key={c.id} className="hover:bg-slate-50">
                     <td className="p-3 font-bold text-slate-900">{c.nom}</td>
                     <td className="p-3 text-center font-semibold">{c.count}</td>
-                    <td className="p-3 text-right font-bold text-teal-800 print-text-black">{c.total.toLocaleString('fr-FR')} FCFA</td>
+                    <td className="p-3 text-right font-bold text-emerald-800 print-text-black">{c.total.toLocaleString('fr-FR')} FCFA</td>
                     <td className="p-3 text-right font-medium">{pct}%</td>
                   </tr>
                 );

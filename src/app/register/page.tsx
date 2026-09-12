@@ -87,7 +87,7 @@ export default function RegisterPage() {
   if (checking) {
     return (
       <div className="min-h-screen bg-slate-950 flex justify-center items-center p-4 text-slate-100 font-sans">
-        <div className="flex items-center gap-3 text-teal-400">
+        <div className="flex items-center gap-3 text-lime-400">
           <Loader2 className="w-6 h-6 animate-spin" />
           <span className="text-sm font-medium">Chargement du système...</span>
         </div>
