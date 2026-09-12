@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Activity, ShieldCheck, UserCheck, LogOut, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { Activity, ShieldCheck, UserCheck, LogOut, Loader2, PlusCircle } from 'lucide-react';
 
 interface HeaderProps {
   user?: {
@@ -32,28 +33,39 @@ export function Header({ user }: HeaderProps) {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Marque Clinique */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white shadow-lg shadow-teal-500/20">
-            <Activity className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">Gestion Clinique</h1>
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30 px-2 py-0.5 rounded-full">
-                <ShieldCheck className="w-3 h-3" />
-                Neon DB Actif
-              </span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+              <Activity className="w-5 h-5" />
             </div>
-            <p className="text-xs text-slate-400 hidden sm:block">Application exclusive de la gérante</p>
-          </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">Gestion Clinique</h1>
+                <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30 px-2 py-0.5 rounded-full">
+                  <ShieldCheck className="w-3 h-3" />
+                  Neon DB
+                </span>
+              </div>
+              <p className="text-xs text-slate-400 hidden sm:block">Application exclusive de la gérante</p>
+            </div>
+          </Link>
         </div>
 
-        {/* Profil & Bouton Déconnexion */}
+        {/* Action Rapide & Profil & Bouton Déconnexion */}
         <div className="flex items-center gap-3 sm:gap-4">
+          {/* Bouton Raccourci Nouvelle Prestation */}
+          <Link
+            href="/nouvelle-prestation"
+            className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-white text-xs font-semibold px-3.5 py-2 rounded-xl shadow-md shadow-teal-500/20 transition-all flex items-center gap-2 active:scale-95"
+          >
+            <PlusCircle className="w-4 h-4" />
+            <span className="hidden sm:inline">Nouvelle prestation</span>
+          </Link>
+
           <div className="flex items-center gap-3 bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-xl">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white font-bold text-xs shadow-md">
               {user?.nom ? user.nom.substring(0, 2).toUpperCase() : 'GC'}
             </div>
-            <div className="text-left text-xs">
+            <div className="text-left text-xs hidden md:block">
               <div className="font-semibold text-slate-200 flex items-center gap-1">
                 <UserCheck className="w-3 h-3 text-teal-400" />
                 <span>{user?.nom || 'Gérante'}</span>

@@ -1,4 +1,8 @@
+'use client';
+
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, 
   Stethoscope, 
@@ -7,7 +11,8 @@ import {
   Database, 
   Lock, 
   CheckCircle2,
-  FolderTree
+  FolderTree,
+  PlusCircle
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -16,15 +21,17 @@ interface SidebarProps {
 }
 
 export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProps) {
+  const pathname = usePathname();
+
   const menuSections = [
     {
       title: "Navigation Gérante",
       items: [
-        { name: "Tableau de bord", icon: LayoutDashboard, href: "/", active: true, badge: "En direct" },
-        { name: "Catalogue Services", icon: FolderTree, href: "#services", active: false, badge: `${servicesCount} actes` },
-        { name: "Prestations (Saisie)", icon: Stethoscope, href: "#", active: false, badge: "Étape 4" },
-        { name: "Recettes & Historique", icon: Receipt, href: "#", active: false, badge: "Étape 4" },
-        { name: "Rapports Financiers", icon: FileBarChart, href: "#", active: false, badge: "Étape 4" },
+        { name: "Tableau de bord", icon: LayoutDashboard, href: "/", active: pathname === '/', badge: "En direct" },
+        { name: "Nouvelle prestation", icon: PlusCircle, href: "/nouvelle-prestation", active: pathname === '/nouvelle-prestation', badge: "Saisie" },
+        { name: "Catalogue Services", icon: FolderTree, href: "/#services", active: false, badge: `${servicesCount} actes` },
+        { name: "Recettes & Historique", icon: Receipt, href: "#", active: false, badge: "Actif" },
+        { name: "Rapports Financiers", icon: FileBarChart, href: "#", active: false, badge: "Actif" },
       ]
     },
     {
@@ -48,8 +55,9 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
               {section.items.map((item, itemIdx) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <Link
                     key={itemIdx}
+                    href={item.href}
                     className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
                       item.active
                         ? "bg-teal-500/10 text-teal-300 border border-teal-500/30 font-semibold"
@@ -70,7 +78,7 @@ export function Sidebar({ categoriesCount = 3, servicesCount = 17 }: SidebarProp
                         {item.badge}
                       </span>
                     )}
-                  </div>
+                  </Link>
                 );
               })}
             </nav>
