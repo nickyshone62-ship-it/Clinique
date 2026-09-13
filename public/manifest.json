@@ -1,25 +1,30 @@
 {
   "name": "BK CLINIQUE",
-  "short_name": "BK Clinique",
+  "short_name": "BK CLINIQUE",
   "description": "Plateforme Officielle de Gestion des Prestations et Recettes de la Clinique BK",
   "start_url": "/",
   "id": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#f5f6f2",
+  "background_color": "#090d16",
   "theme_color": "#090d16",
   "icons": [
     {
-      "src": "/logo.jpg",
+      "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo.jpg",
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }
